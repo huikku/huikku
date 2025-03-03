@@ -497,6 +497,12 @@
             border-radius: 5px;
         }
 
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
         .contact-form input, .contact-form textarea {
             width: 100%;
             padding: 0.5rem;
@@ -510,6 +516,7 @@
 
         .contact-form textarea {
             height: 150px;
+            resize: vertical;
         }
 
         .contact-form button {
@@ -813,7 +820,7 @@
         </div>
     </section>
 
- <!-- Contact Section -->
+    <!-- Contact Section -->
     <section id="contact" class="contact">
         <h2>Contact</h2>
         <div class="contact-info">
@@ -821,17 +828,17 @@
             <div class="contact-item"><a href="https://www.linkedin.com/in/huikku/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">linkedin.com/in/huikku/</a></div>
             <div class="contact-item"><a href="https://discord.com/users/_alienrobot" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968866.png" alt="Discord">_alienrobot</a></div>
         </div>
-        
-        <!-- Direct Formspree Form Implementation -->
-        <div class="contact-form">
-            <form action="https://formspree.io/f/YOUR_ACTUAL_FORM_ID" method="POST">
+        <form action="https://formspree.io/f/xyzkrbzy" method="POST" class="contact-form">
+            <label>
+                Your email:
                 <input type="email" name="email" placeholder="Your email" required>
-                <input type="text" name="name" placeholder="Your name" required>
+            </label>
+            <label>
+                Your message:
                 <textarea name="message" placeholder="Your message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-        
+            </label>
+            <button type="submit">Send</button>
+        </form>
         <div id="map">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2840.342583644681!2d-73.21171268454878!3d44.47588297910206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce6f6ea5e17b2d%3A0x1776b4fa0d79c4fc!2sBurlington%2C%20VT%2C%20USA!5e0!3m2!1sen!2sus!4v1706682400000!5m2!1sen!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
@@ -843,25 +850,6 @@
         <a href="https://www.linkedin.com/in/huikku/" target="_blank">LinkedIn</a> | 
         <a href="https://discord.com/users/_alienrobot" target="_blank">Discord</a>
     </footer>
-
-    <!-- Formspree Script -->
-    <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
-    <script>
-        window.formbutton = window.formbutton || function() { (formbutton.q = formbutton.q || []).push(arguments); };
-        formbutton("create", {
-            action: "https://formspree.io/f/xyzkrbzy", // Your Formspree form ID
-            title: "Contact John Huikku",
-            fields: [
-                { type: "email", label: "Email:", name: "email", placeholder: "Your email", required: true },
-                { type: "text", label: "Name:", name: "name", placeholder: "Your name", required: true },
-                { type: "textarea", label: "Message:", name: "message", placeholder: "Your message", required: true }
-            ],
-            styles: {
-                title: { backgroundColor: "#ff4d4d" },
-                button: { backgroundColor: "#ff4d4d" }
-            }
-        });
-    </script>
 
     <!-- Portfolio, Video Modal, and Flicker Script -->
     <script>
