@@ -2,589 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Rubik+Vinyl&family=Rubik+Mono+One&family=Rubik+Glitch+Pop&family=Rubik+Lines&family=Rubik+Broken+Fax&family=Rubik+Puddles&family=Rubik+Maps&family=Rubik+Iso&family=Rubik+80s+Fade&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#000000">
     <title>John Huikku - CG Supervisor, Art Director, VFX & Animation</title>
-    <style>
-        /* Reset defaults */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'DIN Next Pro', 'DIN', 'Roboto', sans-serif;
-            background-color: #000000;
-            color: #ffffff;
-            line-height: 1.6;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(26, 26, 26, 0.8);
-            padding: 1rem;
-            text-align: center;
-            z-index: 3;
-        }
-
-        nav ul {
-            list-style: none;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 1.5rem;
-        }
-
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            color: #cccccc;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        #background-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-        }
-
-        .glitch-title {
-            font-family: 'Rubik Glitch', sans-serif; /* Fallback */
-            font-size: 5rem;
-            margin-bottom: 1rem;
-            font-weight: normal;
-            -webkit-font-smoothing: antialiased; /* Improve rendering on WebKit browsers */
-            -moz-osx-font-smoothing: grayscale; /* Improve rendering on Firefox */
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            color: #ffffff;
-            padding: 2rem;
-        }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            max-width: 800px;
-        }
-
-        .showreel-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background-color: #ff4d4d;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-
-        .showreel-button:hover {
-            background-color: #e43b3b;
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 3rem;
-            color: #ffffff;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        /* About Section */
-        .about {
-            padding: 4rem 2rem;
-            text-align: center;
-            background-color: #1a1a1a;
-        }
-
-        .about h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #ff4d4d;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 0;
-        }
-
-        .about-item {
-            text-align: center;
-        }
-
-        .about-item img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            filter: grayscale(100%);
-            margin: 0 auto 1rem;
-        }
-
-        .about-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #ff4d4d;
-        }
-
-        .about-item p {
-            font-size: 1rem;
-            color: #cccccc;
-        }
-
-        /* Portfolio Section */
-        .portfolio {
-            padding: 4rem 2rem;
-            text-align: center;
-            background-color: #000000;
-        }
-
-        .portfolio h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #ff4d4d;
-        }
-
-        .portfolio-categories {
-            margin-bottom: 2rem;
-        }
-
-        .portfolio-categories button {
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
-            margin: 0 0.5rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .portfolio-categories button.active {
-            color: #ff4d4d;
-        }
-
-        .portfolio-categories button:hover {
-            color: #cccccc;
-        }
-
-        .portfolio-grid {
-            display: grid !important;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
-            gap: 2rem !important;
-            max-width: 1200px !important;
-            margin: 2rem auto !important;
-        }
-
-        .portfolio-item {
-            position: relative !important;
-            display: block !important;
-            width: 100% !important;
-            height: 250px !important;
-            background-color: #1a1a1a !important;
-            border-radius: 5px !important;
-            margin-bottom: 1rem !important;
-            overflow: hidden !important;
-            cursor: pointer !important;
-        }
-
-        .portfolio-item img {
-            width: 100% !important;
-            height: 200px !important;
-            object-fit: cover !important;
-            display: block !important;
-        }
-
-        .portfolio-item-title {
-            display: block !important;
-            color: #ffffff !important;
-            text-decoration: none !important;
-            padding: 1rem !important;
-            background: rgba(0, 0, 0, 0.7) !important;
-            position: absolute !important;
-            bottom: 0 !important;
-            width: 100% !important;
-            text-align: center !important;
-            z-index: 2 !important;
-        }
-
-        .play-button-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(255, 77, 77, 0.8);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-        }
-
-        .play-button-overlay::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            border-left: 20px solid white;
-            margin-left: 5px;
-        }
-
-        /* Video Modal Styles */
-        .video-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .video-container {
-            width: 80%;
-            max-width: 900px;
-            position: relative;
-        }
-
-        .close-video {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            z-index: 1002;
-        }
-
-        /* Fixed iframe styling */
-        #videoPlayer {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-        }
-
-        #videoPlayer iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Experience Section */
-        .experience {
-            padding: 4rem 2rem;
-            text-align: center;
-            background-color: #1a1a1a;
-        }
-
-        .experience h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #ff4d4d;
-        }
-
-        .experience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .experience-column {
-            background-color: #000000;
-            padding: 2rem;
-            border-radius: 5px;
-        }
-
-        .experience-column h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #ff4d4d;
-        }
-
-        .experience-column p {
-            font-size: 1rem;
-            color: #cccccc;
-            margin-bottom: 1rem;
-        }
-
-        /* Software Section */
-        .software {
-            padding: 4rem 2rem;
-            text-align: center;
-            background-color: #000000;
-        }
-
-        .software h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #ff4d4d;
-        }
-
-        .software-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .software-item {
-            background-color: #1a1a1a;
-            padding: 1.5rem;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .software-item img {
-            width: 100%;
-            max-width: 100px;
-            height: auto;
-            filter: grayscale(100%);
-            opacity: 0.8;
-            transition: opacity 0.3s;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .software-item img:hover {
-            opacity: 1;
-        }
-
-        /* Skills Section */
-        .skills {
-            padding: 4rem 2rem;
-            text-align: center;
-            background-color: #1a1a1a;
-        }
-
-        .skills h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #ff4d4d;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .skills-item {
-            padding: 1rem;
-            background-color: #000000;
-            border-radius: 5px;
-        }
-
-        .skills-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #ff4d4d;
-        }
-
-        .skills-item p {
-            font-size: 1rem;
-            color: #cccccc;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 4rem 2rem;
-            text-align: center;
-            background-color: #000000;
-        }
-
-        .contact h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #ff4d4d;
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .contact-item {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .contact-item img {
-            width: 24px;
-            height: 24px;
-            margin-right: 0.5rem;
-            vertical-align: middle;
-        }
-
-        .contact-item a {
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        .contact-item a:hover {
-            color: #ff4d4d;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #1a1a1a;
-            padding: 2rem;
-            border-radius: 5px;
-        }
-
-        .contact-form label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border: 1px solid #cccccc;
-            border-radius: 5px;
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'DIN Next Pro', 'DIN', 'Roboto', sans-serif;
-        }
-
-        .contact-form textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        .contact-form button {
-            background-color: #ff4d4d;
-            color: #ffffff;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'DIN Next Pro', 'DIN', 'Roboto', sans-serif;
-            transition: background-color 0.3s;
-        }
-
-        .contact-form button:hover {
-            background-color: #e43b3b;
-        }
-
-        #map {
-            width: 100%;
-            height: 400px;
-            margin-top: 2rem;
-            border: 1px solid #cccccc;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #000000;
-            color: #ffffff;
-        }
-
-        footer a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 0.5rem;
-        }
-
-        footer a:hover {
-            color: #ff4d4d;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            nav ul li { margin: 0 1rem; }
-            .hero-content h1 { font-size: 2rem; }
-            .hero-content p { font-size: 1rem; }
-            .about-grid, .experience-grid, .software-grid, .skills-grid, .contact-info {
-                grid-template-columns: 1fr;
-            }
-            .portfolio-item img { height: 150px; }
-            .video-container { width: 95%; }
-            .contact-item { text-align: center; }
-        }
-    </style>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Rubik+Vinyl&family=Rubik+Mono+One&family=Rubik+Glitch+Pop&family=Rubik+Lines&family=Rubik+Broken+Fax&family=Rubik+Puddles&family=Rubik+Maps&family=Rubik+Iso&family=Rubik+80s+Fade&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    
+    <!-- Lightbox Library -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#software">Software</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="nav-container">
+            <div class="logo">JH</div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#software">Software</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#consulting">Consulting</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
     <!-- Hero Section -->
@@ -596,415 +52,438 @@
         <div class="hero-content">
             <h1 class="glitch-title">John Huikku</h1>
             <p>CG Supervisor, Art Director, and VFX Artist with 25+ years transforming visions into reality for film, TV, and gaming.</p>
-            <!-- <a href="#portfolio" class="showreel-button">Play Showreel</a> -->
             <div class="scroll-down">↓</div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
-        <h2>Get to Know Me</h2>
-        <div class="about-grid">
-            <div class="about-item">
-                <img src="images/john_huikku_headshot.jpg" alt="John Huikku Headshot">
-                <h3>Who Am I?</h3>
-                <p>I'm John Huikku, a multi-disciplinary CG Supervisor and Art Director with over 25 years of experience in animation, VFX, game cinematics, venue-based entertainment, and generative AI.</p>
-            </div>
-            <div class="about-item">
-                <h3>What Do I Do?</h3>
-                <p>I specialize in CG supervision, look development, lighting, compositing, VFX supervision, and pipeline development for major studios.</p>
-            </div>
-            <div class="about-item">
-                <h3>How Do I Do It?</h3>
-                <p>With expertise in Maya, Arnold, Nuke, Adobe Creative Suite, Houdini, RenderMan, XGen, Mari, Redshift, and generative AI tools like ComfyUI, Stable Diffusion, MidJourney, Kling, Minimax, Veo2, and Sora.</p>
-            </div>
-            <div class="about-item">
-                <h3>Where Am I?</h3>
-                <p>I work remotely from Burlington, Vermont, United States, with availability to travel globally.</p>
+        <div class="container">
+            <h2 data-aos="fade-up">Get to Know Me</h2>
+            <div class="about-grid">
+                <!-- Headshot photo in its own container -->
+                <div class="about-photo-container" data-aos="fade-up" data-aos-delay="100">
+                    <img src="images/john_huikku_headshot.webp" alt="John Huikku Headshot" loading="lazy">
+                </div>
+                
+                <!-- Four content sections in a grid layout -->
+                <div class="about-content">
+                    <div class="about-item" data-aos="fade-up" data-aos-delay="200">
+                        <h3>Who Am I?</h3>
+                        <p>I'm John Huikku, a multi-disciplinary CG Supervisor and Art Director with over 25 years of experience in animation, VFX, game cinematics, venue-based entertainment, and generative AI.</p>
+                    </div>
+                    <div class="about-item" data-aos="fade-up" data-aos-delay="300">
+                        <h3>What Do I Do?</h3>
+                        <p>I specialize in CG supervision, look development, lighting, compositing, VFX supervision, and pipeline development for major studios.</p>
+                    </div>
+                    <div class="about-item" data-aos="fade-up" data-aos-delay="400">
+                        <h3>How Do I Do It?</h3>
+                        <p>With expertise in Maya, Arnold, Nuke, Adobe Creative Suite, Houdini, RenderMan, XGen, Mari, Redshift, and generative AI tools like ComfyUI, Stable Diffusion, MidJourney, Kling, Minimax, Veo2, and Sora.</p>
+                    </div>
+                    <div class="about-item" data-aos="fade-up" data-aos-delay="500">
+                        <h3>Where Am I?</h3>
+                        <p>I work remotely from Burlington, Vermont, United States, with availability to travel globally.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
-        <h2>Portfolio</h2>
-        <div class="portfolio-categories">
-            <button class="active" onclick="filterPortfolio('all')">All</button>
-            <button onclick="filterPortfolio('animation')">Animation</button>
-            <button onclick="filterPortfolio('vfx')">VFX</button>
-            <button onclick="filterPortfolio('Game Cinematics')">Game Cinematics</button>
-            <button onclick="filterPortfolio('Ride Films')">Ride Films</button>
-        </div>
-        <div class="portfolio-grid" id="portfolio-grid">
-            <div class="portfolio-item" data-category="3d vfx cg" data-video-id="8_mUwAL0fW8">
-                <div class="play-button-overlay"></div>
-                <img src="images/the_audition.jpg" alt="TCL: The Audition">
-                <div class="portfolio-item-title">TCL TVPlus - The Audition | Gen AI Art Director</div>
+        <div class="container">
+            <h2 data-aos="fade-up">Portfolio</h2>
+            
+            <!-- Portfolio Filter Buttons -->
+            <div class="portfolio-categories" data-aos="fade-up">
+                <button class="active" data-filter="all">All</button>
+                <button data-filter="AI">AI</button>
+                <button data-filter="animation">Animation</button>
+                <button data-filter="vfx">VFX</button>
+                <button data-filter="gamecinematics">Game Cinematics</button>
+                <button data-filter="ridefilms">Ride Films</button>
             </div>
-            <div class="portfolio-item" data-category="3d vfx cg" data-video-id="HRlRXyGk72I">
-                <div class="play-button-overlay"></div>
-                <img src="images/dune_part2_arena_fight.jpg" alt="Dune: Part 2 Arena Fight">
-                <div class="portfolio-item-title">Dune: Part 2 - Arena Fight | CG Supervisor</div>
-            </div>
-            <div class="portfolio-item" data-category="3d vfx cg" data-video-id="AdZ-PVC54Gk">
-                <div class="play-button-overlay"></div>
-                <img src="images/shazam_fury_daughters.jpg" alt="Shazam! Fury Daughters Scene">
-                <div class="portfolio-item-title">Shazam! Fury - Daughters Scene | CG Supervisor</div>
-            </div>
-            <div class="portfolio-item" data-category="3d vfx cg" data-video-id="AJf4E0NTMi8">
-                <div class="play-button-overlay"></div>
-                <img src="images/shazam_fury_fight.jpg" alt="Shazam! Fury Fight Scene">
-                <div class="portfolio-item-title">Shazam! Fury - Fight Scene | CG Supervisor</div>
-            </div>
-            <div class="portfolio-item" data-category="3d animation vfx cg" data-video-id="YWQjWdQ6tOA">
-                <div class="play-button-overlay"></div>
-                <img src="images/clash_of_clans_haaland.jpg" alt="Clash of Clans x Erling Haaland - CG Supervisor">
-                <div class="portfolio-item-title">Clash of Clans x Erling Haaland | CG Supervisor</div>
-            </div>
-            <div class="portfolio-item" data-category="3d animation vfx cg" data-video-id="Spl3Xz65eq8">
-                <div class="play-button-overlay"></div>
-                <img src="images/destiny2_screeb_queen.jpg" alt="Destiny 2 Screeb Queen">
-                <div class="portfolio-item-title">Destiny 2 - Screeb Queen | CG Supervisor</div>
-            </div>
-            <div class="portfolio-item" data-category="3d animation cg" data-external-url="https://cinesite.com/the-addams-family-2/">
-                <div class="play-button-overlay"></div>
-                <img src="images/addams_family2_case_study.jpg" alt="Addams Family 2 Case Study">
-                <div class="portfolio-item-title">Addams Family 2 | CG Supervisor</div>
-            </div>
-            <div class="portfolio-item" data-category="3d animation cg" data-video-id="4YvEAXO8y9c">
-                <div class="play-button-overlay"></div>
-                <img src="images/riverdance_trailer.jpg" alt="Riverdance Trailer">
-                <div class="portfolio-item-title">Riverdance | CG Supervisor</div>
-            </div>
-            <div class="portfolio-item" data-category="3d animation cg" data-video-id="4Z5VUf5x2RY">
-                <div class="play-button-overlay"></div>
-                <img src="images/addams_family_teaser.jpg" alt="Addams Family Teaser">
-                <div class="portfolio-item-title">Addams Family | CG Supervisor</div>
-            </div>
-            <div class="portfolio-item" data-category="3d animation vfx cg" data-video-id="l2mIpzUpJ_E">
-                <div class="play-button-overlay"></div>
-                <img src="images/ferrari_land_racing.jpg" alt="Ferrari Land Racing Legends">
-                <div class="portfolio-item-title">Ferrari Land - Racing Legends | CG Supervisor / Art Director</div>
-            </div>
-            <div class="portfolio-item" data-category="3d animation vfx cg" data-video-id="VYoB8KX5AnU">
-                <div class="play-button-overlay"></div>
-                <img src="images/imaginary_mary_trailer.jpg" alt="Imaginary Mary Trailer">
-                <div class="portfolio-item-title">Imaginary Mary | CG Supervisor</div>
-            </div>
-            <div class="portfolio-item" data-category="3d animation cg" data-video-id="UOoKXezuaqI">
-                <div class="play-button-overlay"></div>
-                <img src="images/bob_builder_chainsaw.jpg" alt="Bob the Builder Chainsaw">
-                <div class="portfolio-item-title">Bob the Builder | Series CG Supervisor</div>
-            </div>
-            <div class="portfolio-item" data-category="3d animation cg" data-video-id="KC3AgTsDqfw">
-                <div class="play-button-overlay"></div>
-                <img src="images/henry_hugglemonster_halloween.jpg" alt="Henry Hugglemonster Halloween">
-                <div class="portfolio-item-title">Henry Hugglemonster | Series CG Supervisor</div>
-            </div>
-            <div class="portfolio-item" data-category="3d animation cg" data-video-id="3posPWuA9Ss">
-                <div class="play-button-overlay"></div>
-                <img src="images/wreck_it_ralph_best_scene.jpg" alt="Wreck-It Ralph Best Scene">
-                <div class="portfolio-item-title">Wreck-It Ralph | Procedural Lead / Look Development Artist</div>
-            </div>
-            <div class="portfolio-item" data-category="3d animation cg" data-video-id="pXP2leXbs94">
-                <div class="play-button-overlay"></div>
-                <img src="images/wreck_it_ralph_sugar_rush.jpg" alt="Wreck-It Ralph Sugar Rush">
-                <div class="portfolio-item-title">Wreck-It Ralph | Procedural Lead / Look Development Artist</div>
-            </div>
-            <div class="portfolio-item" data-category="3d animation cg" data-video-id="1TXc2JbCjmw">
-                <div class="play-button-overlay"></div>
-                <img src="images/frozen_ice_harvest.jpg" alt="Frozen Ice Harvest">
-                <div class="portfolio-item-title">Frozen | Look Development & Lighting Artist</div>
-            </div>
-            <div class="portfolio-item" data-category="3d vfx cg" data-video-id="w86sDrAtq-0">
-                <div class="play-button-overlay"></div>
-                <img src="images/lotr_black_gates.jpg" alt="Lord of the Rings Black Gates">
-                <div class="portfolio-item-title">Lord of the Rings | Environments TD / Matte Painter</div>
-            </div>
-            <div class="portfolio-item" data-category="3d vfx cg" data-video-id="KC3AgTsDqfw">
-                <div class="play-button-overlay"></div>
-                <img src="images/sky_captain_hologram.jpg" alt="Sky Captain Hologram">
-                <div class="portfolio-item-title">Sky Captain | Compositor / Matte Painter</div>
+            
+            <!-- Complete Portfolio Grid -->
+            <div class="portfolio-grid" id="portfolio-grid">
+                <!-- TCL: The Audition -->
+                <div class="portfolio-item" data-category="AI" data-video-id="8_mUwAL0fW8" data-aos="fade-up">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/the_audition.webp" alt="TCL: The Audition" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">TCL TVPlus - The Audition</h3>
+                            <p class="portfolio-item-role">Gen AI Art Director</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dune: Part 2 -->
+                <div class="portfolio-item" data-category="vfx" data-video-id="HRlRXyGk72I" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/dune_part2_arena_fight.webp" alt="Dune: Part 2 Arena Fight" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Dune: Part 2 - Arena Fight</h3>
+                            <p class="portfolio-item-role">CG Supervisor</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Shazam! Fury Daughters Scene -->
+                <div class="portfolio-item" data-category="vfx" data-video-id="AdZ-PVC54Gk" data-aos="fade-up" data-aos-delay="150">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/shazam_fury_daughters.webp" alt="Shazam! Fury Daughters Scene" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Shazam! Fury - Daughters Scene</h3>
+                            <p class="portfolio-item-role">CG Supervisor</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Shazam! Fury Fight Scene -->
+                <div class="portfolio-item" data-category="vfx" data-video-id="AJf4E0NTMi8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/shazam_fury_fight.webp" alt="Shazam! Fury Fight Scene" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Shazam! Fury - Fight Scene</h3>
+                            <p class="portfolio-item-role">CG Supervisor</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Clash of Clans -->
+                <div class="portfolio-item" data-category="gamecinematics" data-video-id="YWQjWdQ6tOA" data-aos="fade-up" data-aos-delay="250">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/clash_of_clans_haaland.webp" alt="Clash of Clans x Erling Haaland - CG Supervisor" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Clash of Clans x Erling Haaland</h3>
+                            <p class="portfolio-item-role">CG Supervisor</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Destiny 2 -->
+                <div class="portfolio-item" data-category="gamecinematics" data-video-id="Spl3Xz65eq8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/destiny2_screeb_queen.webp" alt="Destiny 2 Screeb Queen" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Destiny 2 - Screeb Queen</h3>
+                            <p class="portfolio-item-role">CG Supervisor</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Addams Family 2 -->
+                <div class="portfolio-item" data-category="animation" data-external-url="https://cinesite.com/the-addams-family-2/" data-aos="fade-up" data-aos-delay="350">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/addams_family2_case_study.webp" alt="Addams Family 2 Case Study" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Addams Family 2</h3>
+                            <p class="portfolio-item-role">CG Supervisor</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Riverdance -->
+                <div class="portfolio-item" data-category="animation" data-video-id="4YvEAXO8y9c" data-aos="fade-up" data-aos-delay="400">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/riverdance_trailer.webp" alt="Riverdance Trailer" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Riverdance</h3>
+                            <p class="portfolio-item-role">CG Supervisor</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Addams Family Teaser -->
+                <div class="portfolio-item" data-category="animation" data-video-id="4Z5VUf5x2RY" data-aos="fade-up" data-aos-delay="450">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/addams_family_teaser.webp" alt="Addams Family Teaser" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Addams Family</h3>
+                            <p class="portfolio-item-role">CG Supervisor</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Ferrari Land -->
+                <div class="portfolio-item" data-category="ridefilms" data-video-id="l2mIpzUpJ_E" data-aos="fade-up" data-aos-delay="500">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/ferrari_land_racing.webp" alt="Ferrari Land Racing Legends" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Ferrari Land - Racing Legends</h3>
+                            <p class="portfolio-item-role">CG Supervisor / Art Director</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Imaginary Mary -->
+                <div class="portfolio-item" data-category="vfx" data-video-id="VYoB8KX5AnU" data-aos="fade-up" data-aos-delay="550">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/imaginary_mary_trailer.webp" alt="Imaginary Mary Trailer" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Imaginary Mary</h3>
+                            <p class="portfolio-item-role">CG Supervisor</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Wreck-It Ralph Best Scene -->
+                <div class="portfolio-item" data-category="animation" data-video-id="3posPWuA9Ss" data-aos="fade-up" data-aos-delay="600">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/wreck_it_ralph_best_scene.webp" alt="Wreck-It Ralph Best Scene" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Wreck-It Ralph</h3>
+                            <p class="portfolio-item-role">Procedural Lead / Look Development Artist</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Wreck-It Ralph Sugar Rush -->
+                <div class="portfolio-item" data-category="animation" data-video-id="pXP2leXbs94" data-aos="fade-up" data-aos-delay="650">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/wreck_it_ralph_sugar_rush.webp" alt="Wreck-It Ralph Sugar Rush" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Wreck-It Ralph</h3>
+                            <p class="portfolio-item-role">Procedural Lead / Look Development Artist</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Frozen -->
+                <div class="portfolio-item" data-category="animation" data-video-id="1TXc2JbCjmw" data-aos="fade-up" data-aos-delay="700">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/frozen_ice_harvest.webp" alt="Frozen Ice Harvest" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Frozen</h3>
+                            <p class="portfolio-item-role">Look Development & Lighting Artist</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Lord of the Rings -->
+                <div class="portfolio-item" data-category="vfx" data-video-id="w86sDrAtq-0" data-aos="fade-up" data-aos-delay="750">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/lotr_black_gates.webp" alt="Lord of the Rings Black Gates" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Lord of the Rings</h3>
+                            <p class="portfolio-item-role">Environments TD / Matte Painter</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sky Captain -->
+                <div class="portfolio-item" data-category="vfx" data-video-id="KC3AgTsDqfw" data-aos="fade-up" data-aos-delay="800">
+                    <div class="portfolio-item-inner">
+                        <div class="play-button-overlay"></div>
+                        <img src="images/sky_captain_hologram.webp" alt="Sky Captain Hologram" loading="lazy">
+                        <div class="portfolio-item-info">
+                            <h3 class="portfolio-item-title">Sky Captain</h3>
+                            <p class="portfolio-item-role">Compositor / Matte Painter</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Video Modal -->
-    <div class="video-modal" id="videoModal">
-        <div class="video-container">
-            <button class="close-video" id="closeVideo">×</button>
-            <div id="videoPlayer"></div>
-        </div>
-    </div>
-
     <!-- Experience Section -->
     <section id="experience" class="experience">
-        <h2>Experience</h2>
-        <div class="experience-grid">
-            <div class="experience-column">
-                <h3>2018 – Present</h3>
-                <p><strong>CG Supervisor</strong> at Axis Animation, Remote<br>2023 – 2024<br>Led teams for *Destiny 2* and *Clash of Clans* cinematics.</p>
-                <p><strong>CG Supervisor</strong> at DNEG, Remote<br>2021 – 2023<br>Managed VFX for *Dune: Part 2* and *Shazam! Fury of the Gods*.</p>
-                <p><strong>CG Supervisor</strong> at Cinesite Studios, Hybrid/Remote<br>2018 – 2021<br>Supervised *The Addams Family* and *Space Jam 2*.</p>
-            </div>
-            <div class="experience-column">
-                <h3>2003 – 2017</h3>
-                <p><strong>CG Supervisor</strong> at Tau Films, Remote<br>2016 – 2017<br>Supervised Ferrari Land 4K ride film.</p>
-                <p><strong>CG Supervisor</strong> at Egg Post, Dublin<br>2016<br>Led *Imaginary Mary* TV pilot.</p>
-                <p><strong>CG/VFX Supervisor</strong> at Brown Bag Films, Dublin<br>2013 – 2016<br>Directed *Henry Hugglemonster*.</p>
-                <p><strong>Look Dev & Lighting</strong> at Walt Disney Animation<br>2004 – 2013<br>Worked on *Frozen* and *Wreck-It Ralph*.</p>
-                <p><strong>Environment TD</strong> at Weta Digital, NZ<br>2003<br>Led *Lord of the Rings: Return of the King* environments.</p>
+        <div class="container">
+            <h2 data-aos="fade-up">Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-column" data-aos="fade-up" data-aos-delay="100">
+                    <h3>2018 – Present</h3>
+                    <p><strong>CG Supervisor</strong> at Axis Animation, Remote<br>2023 – 2024<br>Led teams for *Destiny 2* and *Clash of Clans* cinematics.</p>
+                    <p><strong>CG Supervisor</strong> at DNEG, Remote<br>2021 – 2023<br>Managed VFX for *Dune: Part 2* and *Shazam! Fury of the Gods*.</p>
+                    <p><strong>CG Supervisor</strong> at Cinesite Studios, Hybrid/Remote<br>2018 – 2021<br>Supervised *The Addams Family* and *Space Jam 2*.</p>
+                </div>
+                <div class="experience-column" data-aos="fade-up" data-aos-delay="200">
+                    <h3>2003 – 2017</h3>
+                    <p><strong>CG Supervisor</strong> at Tau Films, Remote<br>2016 – 2017<br>Supervised Ferrari Land 4K ride film.</p>
+                    <p><strong>CG Supervisor</strong> at Egg Post, Dublin<br>2016<br>Led *Imaginary Mary* TV pilot.</p>
+                    <p><strong>CG/VFX Supervisor</strong> at Brown Bag Films, Dublin<br>2013 – 2016<br>Directed *Henry Hugglemonster*.</p>
+                    <p><strong>Look Dev & Lighting</strong> at Walt Disney Animation<br>2004 – 2013<br>Worked on *Frozen* and *Wreck-It Ralph*.</p>
+                    <p><strong>Environment TD</strong> at Weta Digital, NZ<br>2003<br>Led *Lord of the Rings: Return of the King* environments.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Software Section -->
     <section id="software" class="software">
-        <h2>Software</h2>
-        <div class="software-grid">
-            <div class="software-item"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=After+Effects" alt="After Effects"></div>
-            <div class="software-item"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Photoshop" alt="Photoshop"></div>
-            <div class="software-item"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Maya" alt="Maya"></div>
-            <div class="software-item"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Houdini" alt="Houdini"></div>
-            <div class="software-item"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Nuke" alt="Nuke"></div>
-            <div class="software-item"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=RenderMan" alt="RenderMan"></div>
-            <div class="software-item"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Redshift" alt="Redshift"></div>
-            <div class="software-item"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=XGen" alt="XGen"></div>
-            <div class="software-item"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Mari" alt="Mari"></div>
-            <div class="software-item"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=MidJourney" alt="MidJourney"></div>
-            <div class="software-item"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Runway" alt="Runway"></div>
-            <div class="software-item"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Stable+Diffusion" alt="Stable Diffusion"></div>
+        <div class="container">
+            <h2 data-aos="fade-up">Software</h2>
+            <div class="software-grid">
+                <div class="software-item" data-aos="fade-up" data-aos-delay="100"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=After+Effects" alt="After Effects" loading="lazy"></div>
+                <div class="software-item" data-aos="fade-up" data-aos-delay="150"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Photoshop" alt="Photoshop" loading="lazy"></div>
+                <div class="software-item" data-aos="fade-up" data-aos-delay="200"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Maya" alt="Maya" loading="lazy"></div>
+                <div class="software-item" data-aos="fade-up" data-aos-delay="250"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Houdini" alt="Houdini" loading="lazy"></div>
+                <div class="software-item" data-aos="fade-up" data-aos-delay="300"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Nuke" alt="Nuke" loading="lazy"></div>
+                <div class="software-item" data-aos="fade-up" data-aos-delay="350"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=RenderMan" alt="RenderMan" loading="lazy"></div>
+                <div class="software-item" data-aos="fade-up" data-aos-delay="400"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Redshift" alt="Redshift" loading="lazy"></div>
+                <div class="software-item" data-aos="fade-up" data-aos-delay="450"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=XGen" alt="XGen" loading="lazy"></div>
+                <div class="software-item" data-aos="fade-up" data-aos-delay="500"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Mari" alt="Mari" loading="lazy"></div>
+                <div class="software-item" data-aos="fade-up" data-aos-delay="550"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=MidJourney" alt="MidJourney" loading="lazy"></div>
+                <div class="software-item" data-aos="fade-up" data-aos-delay="600"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Runway" alt="Runway" loading="lazy"></div>
+                <div class="software-item" data-aos="fade-up" data-aos-delay="650"><img src="https://placehold.co/200x200/3D3D3D/FFFFFF?text=Stable+Diffusion" alt="Stable Diffusion" loading="lazy"></div>
+            </div>
         </div>
     </section>
 
     <!-- Skills Section -->
     <section id="skills" class="skills">
-        <h2>Skills</h2>
-        <div class="skills-grid">
-            <div class="skills-item">
-                <h3>CG Supervision</h3>
-                <p>Lead teams for high-quality visuals in *Dune: Part 2* and *Frozen*.</p>
+        <div class="container">
+            <h2 data-aos="fade-up">Skills & Future Focus</h2>
+            <div class="skills-grid-expanded">
+                <div class="skill-expanded-item" data-aos="fade-up" data-aos-delay="100">
+                    <h3>CG Supervision</h3>
+                    <p>CG Supervisor for the Oscar-winning "Dune: Part 2" (2024 Academy Award for Best Visual Effects) and "Shazam 2" at DNEG. Managed teams within DNEG's India studio - the largest VFX operation in the world. Supervised complex sequences including arena fights, environmental effects, digital doubles, and creature work, overseeing all CG aspects from matchmove and layout to final lighting and rendering.</p>
+                </div>
+                
+                <div class="skill-expanded-item" data-aos="fade-up" data-aos-delay="150">
+                    <h3>Look Development</h3>
+                    <p>Developed procedural material systems for "Frozen" crowd characters at Walt Disney Animation Studios. Created hero character materials and grooming for multiple feature films including "Tangled." Implemented new look development pipelines utilizing Mari and Redshift for TV series including "Vampirina" and "Bob the Builder."</p>
+                </div>
+                
+                <div class="skill-expanded-item" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Lighting</h3>
+                    <p>Expert in cinematic lighting for feature films and TV using various renderers including RenderMan, Arnold, and Redshift. Created lighting setups for "Bolt," "Tangled," "Wreck-It Ralph," and other Disney features. Developed GPU-accelerated lighting pipelines to improve efficiency.</p>
+                </div>
+                
+                <div class="skill-expanded-item" data-aos="fade-up" data-aos-delay="250">
+                    <h3>AI & Future Technologies</h3>
+                    <p>Experience with generative AI tools for creative production pipelines. Advisor to Artomatix, developing AI-driven texture synthesis workflows. Currently exploring applications of AI in asset creation, look development, and production optimization. Leveraging AI-assisted coding to create custom solutions for CG workflows without requiring deep programming expertise.</p>
+                </div>
+                
+                <div class="skill-expanded-item" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Creative Entrepreneurship</h3>
+                    <p>Partner at Alpine InfoGrafik, leading product innovation, design strategy, and go-to-market execution for smart home devices in the winter sports industry. Developed a scalable design system that leverages AI to generate product variations for different ski resorts while maintaining brand consistency. Experience managing the complete product lifecycle from concept through manufacturing to retail distribution.</p>
+                </div>
+                
+                <div class="skill-expanded-item" data-aos="fade-up" data-aos-delay="350">
+                    <h3>Pipeline & Workflow Innovation</h3>
+                    <p>Pioneered new workflows and pipeline solutions for teams of hundreds of artists at studios including Cinesite and Brown Bag Films. Early adopter of cloud rendering solutions and remote collaboration tools. Currently exploring how AI-driven tools can revolutionize asset creation, reduce production time, and enhance creative possibilities while maintaining quality standards.</p>
+                </div>
+                
+                <div class="skill-expanded-item" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Remote & Global Team Leadership</h3>
+                    <p>Successfully led distributed production teams across multiple continents for projects at DNEG, Axis Animation, and Tau Films. Managed artists in India, Mexico, Europe, Canada, Australia, and New Zealand through remote collaboration tools. Experience adapting to rapid technological change while maintaining team cohesion and production quality in a globally distributed workforce.</p>
+                </div>
+                
+                <div class="skill-expanded-item" data-aos="fade-up" data-aos-delay="450">
+                    <h3>Hardware & IoT Development</h3>
+                    <p>Partner at Alpine InfoGrafik, designing and manufacturing IoT-enabled ski lift status displays that merge traditional craftsmanship with cutting-edge technology. Hands-on experience with Arduino programming, 3D printing, and CNC routing for product development. Creating scalable manufacturing workflows that balance handcrafted quality with production efficiency for consumer-facing IoT devices that blend art and technology.</p>
+                </div>
             </div>
-            <div class="skills-item">
-                <h3>Look Development</h3>
-                <p>Develop materials and lighting for *Frozen* and *Tangled*.</p>
-            </div>
-            <div class="skills-item">
-                <h3>Lighting</h3>
-                <p>Create cinematic lighting with RenderMan and Redshift.</p>
-            </div>
-            <div class="skills-item">
-                <h3>Compositing</h3>
-                <p>Oversee Nuke workflows for *Dune: Part 2* and *Shazam 2*.</p>
-            </div>
-            <div class="skills-item">
-                <h3>VFX Supervision</h3>
-                <p>Manage VFX pipelines for *Dune: Part 2* and *Shazam 2*.</p>
-            </div>
-            <div class="skills-item">
-                <h3>Hair and Fur Grooming</h3>
-                <p>Use XGen for *Space Jam 2* and *Imaginary Mary*.</p>
-            </div>
-            <div class="skills-item">
-                <h3>Pipeline Development</h3>
-                <p>Optimize CG pipelines with Maya and Houdini.</p>
-            </div>
-            <div class="skills-item">
-                <h3>Team Leadership</h3>
-                <p>Mentor 50+ artists across multiple continents.</p>
-            </div>
-            <div class="skills-item">
-                <h3>Technical</h3>
-                <p>Expert in Python and AI tools like MidJourney and Sora.</p>
+        </div>
+    </section>
+
+    <!-- Consulting Section -->
+    <section id="consulting" class="consulting">
+        <div class="container">
+            <h2 data-aos="fade-up">Strategic Consulting & Advisory</h2>
+            <div class="consulting-content" data-aos="fade-up" data-aos-delay="100">
+                <p>Available for specialized consulting services at the intersection of creative technology, production workflows, and emerging technologies. Drawing on 25+ years of experience across the entertainment industry and hardware development to provide clients with tailored solutions that balance creative vision, technical feasibility, and business objectives.</p>
+                
+                <h3 data-aos="fade-up" data-aos-delay="150">Areas of Expertise:</h3>
+                
+                <div class="consulting-grid">
+                    <div class="consulting-item" data-aos="fade-up" data-aos-delay="200">
+                        <h4>AI Implementation for Creative Pipelines</h4>
+                        <p>Recently advised TCL Research America on developing AI production pipelines for animation. Experience guiding teams through the integration of generative AI tools while maintaining creative control and production quality.</p>
+                    </div>
+                    
+                    <div class="consulting-item" data-aos="fade-up" data-aos-delay="250">
+                        <h4>Production Workflow Optimization</h4>
+                        <p>Analyzing and redesigning production pipelines to increase efficiency, reduce bottlenecks, and improve creative outcomes. Specializing in distributed team coordination and cross-discipline collaboration.</p>
+                    </div>
+                    
+                    <div class="consulting-item" data-aos="fade-up" data-aos-delay="300">
+                        <h4>Hardware/Software Prototyping</h4>
+                        <p>Developing proof-of-concept solutions that bridge physical and digital realms, from IoT devices to interactive displays. Hands-on approach to testing technical feasibility while maintaining focus on end-user experience.</p>
+                    </div>
+                    
+                    <div class="consulting-item" data-aos="fade-up" data-aos-delay="350">
+                        <h4>Technical Education & Team Development</h4>
+                        <p>Creating customized training programs for teams adopting new technologies or workflows. Experience includes teaching courses on CG lighting, look development, and XGen workflows at Animation Skillnet.</p>
+                    </div>
+                    
+                    <div class="consulting-item" data-aos="fade-up" data-aos-delay="400">
+                        <h4>Digital Asset Creation & Management</h4>
+                        <p>Consulting on efficient approaches to developing, organizing, and maintaining complex digital assets across multiple platforms and production environments.</p>
+                    </div>
+                </div>
+                
+                <p data-aos="fade-up" data-aos-delay="450">My consulting approach combines practical experience from leading major productions with a forward-looking perspective on emerging technologies, helping clients navigate technological transitions while maintaining focus on their creative and business goals.</p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
-        <h2>Contact</h2>
-        <div class="contact-info">
-            <div class="contact-item"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="Location"><span>Burlington, Vermont, USA (Remote)</span></div>
-            <div class="contact-item"><a href="https://www.linkedin.com/in/huikku/" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">linkedin.com/in/huikku/</a></div>
-            <div class="contact-item"><a href="https://discord.com/users/_alienrobot" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968866.png" alt="Discord">_alienrobot</a></div>
-        </div>
-        <form action="https://formspree.io/f/xyzkrbzy" method="POST" class="contact-form">
-            <label>
-                Your email:
-                <input type="email" name="email" placeholder="Your email" required>
-            </label>
-            <label>
-                Subject:
-                <input type="text" name="subject" placeholder="Subject of your message" required>
-            </label>
-            <label>
-                Your message:
-                <textarea name="message" placeholder="Your message" required></textarea>
-            </label>
-            <button type="submit">Send</button>
-        </form>
-        <div id="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2840.342583644681!2d-73.21171268454878!3d44.47588297910206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce6f6ea5e17b2d%3A0x1776b4fa0d79c4fc!2sBurlington%2C%20VT%2C%20USA!5e0!3m2!1sen!2sus!4v1706682400000!5m2!1sen!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="container">
+            <h2 data-aos="fade-up">Contact</h2>
+            <div class="contact-info" data-aos="fade-up">
+                <div class="contact-item"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="Location" loading="lazy"><span>Burlington, Vermont, USA (Remote)</span></div>
+                <div class="contact-item"><a href="https://www.linkedin.com/in/huikku/" target="_blank" rel="noopener noreferrer"><img src="images/ui/linkedinLogo.png" alt="LinkedIn" loading="lazy">linkedin.com/in/huikku/</a></div>
+                <div class="contact-item"><a href="https://discord.com/users/_alienrobot" target="_blank" rel="noopener noreferrer"><img src="images/ui/discordLogo.png" alt="Discord" loading="lazy">_alienrobot</a></div>
+            </div>
+            <form action="https://formspree.io/f/xyzkrbzy" method="POST" class="contact-form" data-aos="fade-up">
+                <label>
+                    Your email:
+                    <input type="email" name="email" placeholder="Your email" required>
+                </label>
+                <label>
+                    Subject:
+                    <input type="text" name="subject" placeholder="Subject of your message" required>
+                </label>
+                <label>
+                    Your message:
+                    <textarea name="message" placeholder="Your message" required></textarea>
+                </label>
+                <button type="submit">Send</button>
+            </form>
+            <div id="map" data-aos="fade-up">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2840.342583644681!2d-73.21171268454878!3d44.47588297910206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce6f6ea5e17b2d%3A0x1776b4fa0d79c4fc!2sBurlington%2C%20VT%2C%20USA!5e0!3m2!1sen!2sus!4v1706682400000!5m2!1sen!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 John Huikku. All rights reserved.</p>
-        <a href="https://www.linkedin.com/in/huikku/" target="_blank">LinkedIn</a> | 
-        <a href="https://discord.com/users/_alienrobot" target="_blank">Discord</a>
+        <div class="container">
+            <div class="footer-content">
+                <p>© 2025 John Huikku. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/huikku/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://discord.com/users/_alienrobot" target="_blank" rel="noopener noreferrer">Discord</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <!-- Portfolio, Video Modal, and Flicker Script -->
-    <script>
-        // Portfolio and video modal functionality
-        (function() {
-            console.log("Portfolio and video script loaded");
-            
-            // Set up video modal
-            const videoModal = document.getElementById('videoModal');
-            const videoPlayer = document.getElementById('videoPlayer');
-            const closeVideo = document.getElementById('closeVideo');
-            
-            // Close modal on button click
-            closeVideo.addEventListener('click', function() {
-                videoModal.style.display = 'none';
-                videoPlayer.innerHTML = ''; // Clear iframe
-            });
-            
-            // Close modal when clicking outside
-            window.addEventListener('click', function(event) {
-                if (event.target === videoModal) {
-                    videoModal.style.display = 'none';
-                    videoPlayer.innerHTML = ''; // Clear iframe
-                }
-            });
-            
-            // Add click events to portfolio items
-            const portfolioItems = document.querySelectorAll('.portfolio-item');
-            portfolioItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const videoId = this.getAttribute('data-video-id');
-                    const externalUrl = this.getAttribute('data-external-url');
-                    
-                    if (videoId) {
-                        // YouTube embed
-                        videoPlayer.innerHTML = `
-                            <iframe 
-                                src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
-                                title="YouTube video player" 
-                                allowfullscreen
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-                            </iframe>
-                        `;
-                        videoModal.style.display = 'flex';
-                    } else if (externalUrl) {
-                        // External link
-                        window.open(externalUrl, '_blank');
-                    }
-                });
-                
-                // Make sure item is displayed
-                item.style.display = 'block';
-                item.style.visibility = 'visible';
-                item.style.opacity = '1';
-            });
-            
-            // Force all portfolio items to be visible
-            setTimeout(function() {
-                const portfolioGrid = document.getElementById('portfolio-grid');
-                if (portfolioGrid) {
-                    console.log("Portfolio grid found, forcing display");
-                    portfolioGrid.style.display = 'grid';
-                }
-                
-                // Force filter to 'all'
-                try {
-                    filterPortfolio('all');
-                } catch (e) {
-                    console.error("Error in filterPortfolio:", e);
-                }
-            }, 100); // Short delay to ensure DOM is ready
-        })();
-
-        // Portfolio filter function
-        function filterPortfolio(category) {
-            console.log("Filtering portfolio by:", category);
-            const items = document.querySelectorAll('.portfolio-item');
-            
-            if (items.length === 0) {
-                console.error("No portfolio items found to filter!");
-                return;
-            }
-            
-            items.forEach(item => {
-                const dataCategory = item.getAttribute('data-category') || '';
-                
-                if (category === 'all' || dataCategory.includes(category)) {
-                    item.style.display = 'block';
-                    item.style.visibility = 'visible';
-                    item.style.opacity = '1';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-            
-            // Update active button
-            try {
-                document.querySelectorAll('.portfolio-categories button').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                document.querySelector(`.portfolio-categories button[onclick="filterPortfolio('${category}')"]`).classList.add('active');
-            } catch (e) {
-                console.error("Error updating active button:", e);
-            }
-        }
-
-        // Also run when DOM is fully loaded for safety
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("DOMContentLoaded portfolio initialization");
-        });
-
-        // Flickering font effect for hero title with random movement and colors
-        const glitchTitle = document.querySelector('.glitch-title');
-        const rubikFonts = [
-            'Rubik Glitch',
-            'Rubik Vinyl',
-            'Rubik Mono One',
-            'Rubik Glitch Pop',
-            'Rubik Lines',
-            'Rubik Broken Fax',
-            'Rubik Puddles',
-            'Rubik Maps',
-            'Rubik Iso',
-            'Rubik 80s Fade'
-        ];
-        const colors = ['#00FFFF', '#FFA500', '#000000', '#FFFFFF']; // Cyan, Orange, Black, White
-
-        function randomGlitch() {
-            if (glitchTitle) {
-                // Random font
-                const randomFont = rubikFonts[Math.floor(Math.random() * rubikFonts.length)];
-                glitchTitle.style.fontFamily = `'${randomFont}', sans-serif`;
-
-                // Random horizontal translation (up to 2px left or right)
-                const randomX = Math.random() * 4 - 2; // Random between -2px and +2px
-                glitchTitle.style.transform = `translate(${randomX}px, 0)`;
-
-                // Random color from the specified palette
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                glitchTitle.style.color = randomColor;
-            } else {
-                console.error("Glitch title element not found!");
-            }
-
-            // Random delay for glitchy feel (50ms to 500ms for more variability)
-            const randomDelay = Math.random() * 450 + 50; // 50ms to 500ms
-            setTimeout(randomGlitch, randomDelay);
-        }
-
-        // Start the glitch when the DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', randomGlitch);
-    </script>
+    <!-- External JavaScript Libraries -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/portfolio.js"></script>
+    <script src="js/glitch-effect.js"></script>
 </body>
 </html>
