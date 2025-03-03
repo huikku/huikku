@@ -433,10 +433,37 @@ nav {
     color: var(--color-primary);
 }
 
-.experience-column p {
-    font-size: 1rem;
+.experience-item {
+    margin-bottom: var(--spacing-md);
+    text-align: left;
+}
+
+.experience-item p {
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text);
+}
+
+.experience-item ul {
+    padding-left: 1.2rem;
+    list-style-type: disc;
     color: var(--color-text-muted);
-    margin-bottom: var(--spacing-sm);
+}
+
+.experience-item li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.experience-item strong {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* Add a subtle dividing line between experience items */
+.experience-item:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: var(--spacing-sm);
 }
 
 /* Software Section */
@@ -539,14 +566,23 @@ nav {
     font-size: 1.1rem;
 }
 
-.expertise-title {
-    font-size: 1.5rem;
-    color: var(--color-primary);
+/* Make "Areas of Expertise:" black */
+.expertise-header {
+    color: var(--color-text) !important; /* Override any existing color */
+    font-size: 1.8rem;
     margin: var(--spacing-md) 0;
     text-align: center;
 }
 
-.expertise-grid {
+/* Make expertise area titles red */
+.expertise-area {
+    color: var(--color-primary) !important; /* This will use your red color variable */
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.consulting-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: var(--spacing-md);
@@ -554,7 +590,7 @@ nav {
     max-width: 1200px;
 }
 
-.expertise-item {
+.consulting-item {
     background-color: var(--color-background);
     padding: var(--spacing-md);
     border-radius: var(--border-radius-md);
@@ -562,25 +598,34 @@ nav {
     transition: transform var(--transition-fast);
 }
 
-.expertise-item:hover {
+.consulting-item:hover {
     transform: translateY(-5px);
 }
 
-.expertise-item h4 {
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-sm);
-    font-size: 1.2rem;
-}
-
-.expertise-item p {
+.consulting-item p {
     color: var(--color-text-muted);
 }
 
-.consulting-conclusion {
-    max-width: 900px;
-    margin: var(--spacing-md) auto 0;
+/* Consulting approach box */
+.consulting-approach {
+    background-color: var(--color-background);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
     text-align: center;
+    margin: var(--spacing-md) auto;
+    max-width: 1200px;
+    transition: transform var(--transition-fast);
+}
+
+.consulting-approach:hover {
+    transform: translateY(-5px);
+}
+
+.consulting-approach p {
+    color: var(--color-text-muted);
+    margin: 0;
     font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 /* Contact Section */
@@ -723,5 +768,25 @@ footer {
     
     .expertise-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .experience-item ul {
+        padding-left: 1rem;
+    }
+    
+    .experience-item li {
+        font-size: 0.85rem;
+    }
+    
+    .consulting-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .consulting-approach {
+        padding: var(--spacing-sm);
+    }
+    
+    .consulting-approach p {
+        font-size: 1rem;
     }
 }

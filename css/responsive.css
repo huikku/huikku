@@ -271,3 +271,55 @@
         display: none;
     }
 }
+
+/* These are additional responsive styles for the experience section 
+   Add these to your responsive.css file */
+
+/* Medium screens and below (tablet and mobile) */
+@media (max-width: 992px) {
+    /* Experience section adjustments */
+    .experience-item ul {
+        padding-left: 1rem;
+    }
+    
+    .experience-item li {
+        font-size: 0.85rem;
+    }
+}
+
+/* Small screens (mobile only) */
+@media (max-width: 767px) {
+    /* Experience section */
+    .experience-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .experience-item ul {
+        padding-left: 0.8rem;
+    }
+    
+    .experience-item li {
+        font-size: 0.8rem;
+        margin-bottom: 0.3rem;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    /* Experience section further adjustments */
+    .experience-column {
+        padding: var(--spacing-sm);
+    }
+    
+    .experience-item {
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .experience-item:not(:last-child) {
+        padding-bottom: var(--spacing-xs);
+    }
+    
+    .experience-item p {
+        font-size: 0.9rem;
+    }
+}
