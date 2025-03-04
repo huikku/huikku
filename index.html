@@ -9,62 +9,13 @@
     <!-- Google Fonts with preconnect for better performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Rubik+Vinyl&family=Rubik+Mono+One&family=Rubik+Glitch+Pop&family=Rubik+Lines&family=Rubik+Broken+Fax&family=Rubik+Puddles&family=Rubik+Maps&family=Rubik+Iso&family=Rubik+80s+Fade&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Rubik+Vinyl&family=Rubik+Glitch+Pop&family=Rubik+Lines&family=Rubik+Broken+Fax&display=swap" rel="stylesheet">
     
-    <!-- External CSS -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    
-    <!-- Position Adjustments CSS -->
-    <style>
-    /* Hero content positioning */
-    .hero-content {
-        transform: translateY(-120px); /* Move up to avoid interface elements */
-        position: relative;
-        z-index: 5;
-        margin-bottom: 80px;
-    }
-    
-    .glitch-title {
-        margin-bottom: 1.5rem;
-    }
-    
-    .hero-content p {
-        margin-bottom: 3rem;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    /* Scroll down arrow positioning */
-    .scroll-down {
-        position: absolute;
-        bottom: 5px; /* Changed from 40px to 5px */
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 3rem;
-        color: #ffffff;
-        animation: bounce 2s infinite;
-        z-index: 5;
-        margin-bottom: 0; /* Added to ensure no extra spacing */
-        padding-bottom: 0; /* Added to ensure no extra spacing */
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .hero-content {
-            transform: translateY(-80px);
-        }
-        
-        .scroll-down {
-            bottom: 5px; /* Changed from 30px to 5px */
-        }
-    }
-    </style>
-    
-    <!-- Animation Library -->
+    <!-- Animation Library - loaded asynchronously -->
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    
+    <!-- Combined CSS -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -142,12 +93,12 @@
             
             <!-- Portfolio Filter Buttons -->
             <div class="portfolio-categories" data-aos="fade-up">
-                <button class="active" data-filter="all">All</button>
-                <button data-filter="AI">AI</button>
-                <button data-filter="animation">Animation</button>
-                <button data-filter="vfx">VFX</button>
-                <button data-filter="gamecinematics">Game Cinematics</button>
-                <button data-filter="ridefilms">Ride Films</button>
+                <button class="active" data-category="all">All</button>
+                <button data-category="AI">AI</button>
+                <button data-category="animation">Animation</button>
+                <button data-category="vfx">VFX</button>
+                <button data-category="gamecinematics">Game Cinematics</button>
+                <button data-category="ridefilms">Ride Films</button>
             </div>
             
             <!-- Complete Portfolio Grid -->
@@ -346,6 +297,14 @@
             </div>
         </div>
     </section>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-container">
+            <button class="close-video" id="closeVideo">×</button>
+            <div id="videoPlayer"></div>
+        </div>
+    </div>
 
     <!-- Experience Section -->
     <section id="experience" class="experience">
@@ -585,7 +544,7 @@
                 <div class="contact-item"><a href="https://www.linkedin.com/in/huikku/" target="_blank" rel="noopener noreferrer"><img src="images/ui/linkedinLogo.png" alt="LinkedIn" loading="lazy">linkedin.com/in/huikku/</a></div>
                 <div class="contact-item"><a href="https://discord.com/users/_alienrobot" target="_blank" rel="noopener noreferrer"><img src="images/ui/discordLogo.png" alt="Discord" loading="lazy">_alienrobot</a></div>
             </div>
-            <form action="https://formspree.io/f/PUT_YOUR_FORMSPREE_HERE" method="POST" class="contact-form" data-aos="fade-up">
+            <form action="https://formspree.io/f/xyzkrbzy" method="POST" class="contact-form" data-aos="fade-up">
                 <label>
                     Your email:
                     <input type="email" name="email" placeholder="Your email" required>
@@ -618,156 +577,6 @@
         </div>
     </footer>
 
-    <!-- External JavaScript Libraries -->
+    <!-- JavaScript (Combined) -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Custom JavaScript -->
     <script src="js/main.js"></script>
-    <script src="js/portfolio.js"></script>
-    <script src="js/youtube-lightbox.js"></script>
-    
-    <!-- FIXED GLITCH EFFECT SCRIPT -->
-    <script>
-    // Persistent glitch effect with error handling and fallbacks
-    (function() {
-        // Create an interval that constantly checks if the effect is running
-        let glitchActive = false;
-        let lastGlitchTime = 0;
-        
-        // Load fonts first to ensure they're available
-        const fontLoader = document.createElement('div');
-        fontLoader.style.position = 'absolute';
-        fontLoader.style.visibility = 'hidden';
-        fontLoader.style.pointerEvents = 'none';
-        document.body.appendChild(fontLoader);
-        
-        // Preload all the fonts - REMOVED 'Rubik Mono One' from the list
-        const fonts = [
-            'Rubik Glitch',
-            'Rubik Vinyl', 
-            'Rubik Glitch Pop',
-            'Rubik Lines',
-            'Rubik Broken Fax',
-            'Rubik Puddles',
-            'Rubik Maps',
-            'Rubik Iso',
-            'Rubik 80s Fade'
-        ];
-        
-        // Create a span for each font to force them to load
-        fonts.forEach(font => {
-            const span = document.createElement('span');
-            span.style.fontFamily = `'${font}'`; // No fallback specified
-            span.textContent = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            fontLoader.appendChild(span);
-        });
-        
-        // Main glitch function - with safety features
-        function startGlitchEffect() {
-            if (glitchActive) return; // Already running
-            
-            console.log("Starting glitch effect with no fallback fonts");
-            glitchActive = true;
-            
-            // Get the title element
-            const glitchTitle = document.querySelector('.glitch-title');
-            if (!glitchTitle) {
-                console.error("Glitch title not found");
-                return;
-            }
-            
-            // Save original text and styles for safety
-            const originalText = glitchTitle.textContent;
-            const originalColor = window.getComputedStyle(glitchTitle).color || '#FF4D4D';
-            
-            // Define colors
-            const colors = ['#00FFFF', '#FFA500', '#FF4D4D', '#FFFFFF'];
-            
-            // Set default Rubik font - IMPORTANT: No fallback fonts specified
-            glitchTitle.style.fontFamily = "'Rubik Glitch'";
-            
-            // Create special stylesheet rule to force Rubik fonts only
-            try {
-                const styleSheet = document.createElement('style');
-                styleSheet.textContent = `.glitch-title { font-family: 'Rubik Glitch' !important; }`;
-                document.head.appendChild(styleSheet);
-            } catch (e) {
-                console.error("Could not create font style rule:", e);
-            }
-            
-            // Wait a bit for fonts to be ready
-            setTimeout(() => {
-                // Core recursive glitch function
-                function performGlitch() {
-                    try {
-                        // Update timestamp to show the effect is still running
-                        lastGlitchTime = Date.now();
-                        
-                        // Apply a new random font (80% chance)
-                        if (Math.random() < 0.8) {
-                            const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
-                            // IMPORTANT: The !important flag ensures no fallback fonts appear
-                            glitchTitle.style.cssText += `font-family: '${randomFont}' !important;`;
-                        }
-                        
-                        // Apply a slight position offset (50% chance)
-                        if (Math.random() < 0.5) {
-                            const randomX = Math.random() * 4 - 2; // -2 to 2px
-                            const randomY = Math.random() * 2 - 1; // -1 to 1px
-                            glitchTitle.style.transform = `translate(${randomX}px, ${randomY}px)`;
-                        }
-                        
-                        // Change color (30% chance)
-                        if (Math.random() < 0.3) {
-                            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                            glitchTitle.style.color = randomColor;
-                        }
-                        
-                        // Restore text if somehow changed
-                        if (glitchTitle.textContent !== originalText) {
-                            glitchTitle.textContent = originalText;
-                        }
-                    } catch (error) {
-                        console.error("Error in glitch effect, trying to recover:", error);
-                        
-                        // Recover to Rubik Glitch if error occurs - NO FALLBACKS
-                        try {
-                            glitchTitle.style.cssText += `font-family: 'Rubik Glitch' !important;`;
-                            glitchTitle.style.color = originalColor;
-                            glitchTitle.style.transform = 'translate(0, 0)';
-                            glitchTitle.textContent = originalText;
-                        } catch (e) {
-                            console.error("Failed to recover from error:", e);
-                        }
-                    }
-                    
-                    // Continue the glitch loop
-                    const delay = Math.floor(Math.random() * 350) + 100; // 100-450ms
-                    // Slightly longer minimum delay to prevent font flickering
-                    setTimeout(performGlitch, delay);
-                }
-                
-                // Start the glitch loop
-                performGlitch();
-            }, 1000); // Wait 1 second for fonts to be fully loaded
-        }
-        
-        // Start the effect when document is fully loaded (not just DOM ready)
-        window.addEventListener('load', function() {
-            // Use window load instead of DOMContentLoaded to ensure fonts are loaded
-            setTimeout(startGlitchEffect, 1000);
-        });
-        
-        // Additional safety check - if glitch stops, restart it
-        setInterval(function() {
-            if (glitchActive && Date.now() - lastGlitchTime > 2000) {
-                // More than 2 seconds since last glitch, restart
-                console.log("Glitch effect seems to have stopped, restarting...");
-                glitchActive = false;
-                startGlitchEffect();
-            }
-        }, 3000);
-    })();
-    </script>
-</body>
-</html>
