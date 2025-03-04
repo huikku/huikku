@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initLazyLoading();
     initPortfolioFilters();
-    initVideoModal();
+    initVideoModal(); // Now completely separate from filtering
     initGlitchEffect();
     
     // Detect scroll for header transparency
@@ -119,15 +119,16 @@ function handleScroll() {
 
 /**
  * Initialize portfolio filter functionality
+ * COMPLETELY SEPARATE from video functionality
  */
 function initPortfolioFilters() {
-    const filterButtons = document.querySelectorAll('[data-category]');
+    const filterButtons = document.querySelectorAll('.portfolio-categories button');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
     
     // Apply 'all' filter by default
     setTimeout(() => filterPortfolio('all'), 100);
     
-    // Add click event to filter buttons
+    // Add click event to filter buttons only
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             // Remove active class from all buttons
@@ -198,8 +199,7 @@ function initPortfolioFilters() {
 
 /**
  * Initialize video modal functionality
- * This uses the approach from the original index_old.html file
- * with fixes to prevent unwanted portfolio filtering
+ * COMPLETELY SEPARATE from portfolio filtering
  */
 function initVideoModal() {
     // Set up video modal
@@ -237,13 +237,19 @@ function initVideoModal() {
         }
     });
     
-    // Add click events to portfolio items with video IDs
-    document.querySelectorAll('.portfolio-item[data-video-id]').forEach(item => {
-        item.addEventListener('click', function(e) {
+    // Direct way to handle video clicks using play button overlay
+    const playButtons = document.querySelectorAll('.play-button-overlay');
+    playButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
             e.preventDefault();
-            e.stopPropagation(); // Prevent event bubbling
+            e.stopPropagation();
             
-            const videoId = this.getAttribute('data-video-id');
+            // Find parent portfolio item
+            const portfolioItem = this.closest('.portfolio-item');
+            if (!portfolioItem) return;
+            
+            const videoId = portfolioItem.getAttribute('data-video-id');
+            const externalUrl = portfolioItem.getAttribute('data-external-url');
             
             if (videoId) {
                 // YouTube embed
@@ -257,25 +263,49 @@ function initVideoModal() {
                 `;
                 videoModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden'; // Prevent scrolling
-                
-                // IMPORTANT: Return false to prevent any other handlers from executing
-                return false;
-            }
-        });
-    });
-    
-    // Handle external URLs separately
-    document.querySelectorAll('.portfolio-item[data-external-url]').forEach(item => {
-        item.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation(); // Prevent event bubbling
-            
-            const externalUrl = this.getAttribute('data-external-url');
-            if (externalUrl) {
+            } else if (externalUrl) {
                 window.open(externalUrl, '_blank');
             }
             
-            // IMPORTANT: Return false to prevent any other handlers from executing
+            return false;
+        });
+    });
+    
+    // Also handle entire portfolio-item clicks for better UX
+    // But make sure we're completely preventing event bubbling
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            // Get the click target
+            const target = e.target;
+            
+            // If the click is on a filter button or within the categories, don't proceed
+            if (target.closest('.portfolio-categories')) {
+                return true;
+            }
+            
+            // Prevent default behavior
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const videoId = this.getAttribute('data-video-id');
+            const externalUrl = this.getAttribute('data-external-url');
+            
+            if (videoId) {
+                // YouTube embed
+                videoPlayer.innerHTML = `
+                    <iframe 
+                        src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+                        title="YouTube video player" 
+                        allowfullscreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                    </iframe>
+                `;
+                videoModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else if (externalUrl) {
+                window.open(externalUrl, '_blank');
+            }
+            
             return false;
         });
     });
