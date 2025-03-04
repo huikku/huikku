@@ -199,6 +199,7 @@ function initPortfolioFilters() {
 /**
  * Initialize video modal functionality
  * This uses the approach from the original index_old.html file
+ * with fixes to prevent unwanted portfolio filtering
  */
 function initVideoModal() {
     // Set up video modal
@@ -240,6 +241,8 @@ function initVideoModal() {
     document.querySelectorAll('.portfolio-item[data-video-id]').forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation(); // Prevent event bubbling
+            
             const videoId = this.getAttribute('data-video-id');
             
             if (videoId) {
@@ -254,6 +257,9 @@ function initVideoModal() {
                 `;
                 videoModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden'; // Prevent scrolling
+                
+                // IMPORTANT: Return false to prevent any other handlers from executing
+                return false;
             }
         });
     });
@@ -262,10 +268,15 @@ function initVideoModal() {
     document.querySelectorAll('.portfolio-item[data-external-url]').forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation(); // Prevent event bubbling
+            
             const externalUrl = this.getAttribute('data-external-url');
             if (externalUrl) {
                 window.open(externalUrl, '_blank');
             }
+            
+            // IMPORTANT: Return false to prevent any other handlers from executing
+            return false;
         });
     });
 }
