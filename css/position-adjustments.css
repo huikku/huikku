@@ -1,0 +1,81 @@
+/**
+ * Updated Position Adjustments
+ * Precise positioning for hero section elements based on screenshot
+ */
+
+/* Move hero content significantly higher to clear interface elements in video */
+.hero-content {
+    transform: translateY(-120px); /* More aggressive upward shift */
+    position: relative;
+    z-index: 5;
+    margin-bottom: 80px; /* Create more space below content */
+}
+
+/* Keep title and description together */
+.glitch-title {
+    margin-bottom: 1.5rem;
+}
+
+/* Ensure description text is clear of dashboard elements */
+.hero-content p {
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Position the arrow much lower, near the bottom edge */
+.scroll-down {
+    position: absolute;
+    bottom: 20px; /* Positioned firmly at bottom of viewport */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    color: #ffffff;
+    animation: bounce 2s infinite;
+    z-index: 5; /* Ensure it's above any video elements */
+}
+
+/* Ensure hero section maintains proper height */
+.hero {
+    position: relative;
+    min-height: 100vh; /* Guarantee full height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0; /* Remove any top padding */
+    padding-bottom: 0; /* Remove any bottom padding */
+    overflow: hidden;
+}
+
+/* Background video positioning */
+#background-video {
+    z-index: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .hero-content {
+        transform: translateY(-100px); /* Slightly less shift on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        transform: translateY(-80px);
+    }
+    
+    .scroll-down {
+        bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+        transform: translateY(-60px);
+    }
+    
+    .scroll-down {
+        bottom: 20px;
+    }
+}

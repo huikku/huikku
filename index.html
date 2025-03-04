@@ -6,21 +6,94 @@
     <meta name="theme-color" content="#000000">
     <title>John Huikku - CG Supervisor, Art Director, VFX & Animation</title>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts with preconnect for better performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Rubik+Vinyl&family=Rubik+Glitch+Pop&family=Rubik+Lines&family=Rubik+Broken+Fax&family=Rubik+Puddles&family=Rubik+Maps&family=Rubik+Iso&family=Rubik+80s+Fade&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Rubik+Vinyl&family=Rubik+Mono+One&family=Rubik+Glitch+Pop&family=Rubik+Lines&family=Rubik+Broken+Fax&family=Rubik+Puddles&family=Rubik+Maps&family=Rubik+Iso&family=Rubik+80s+Fade&display=swap" rel="stylesheet">
     
     <!-- External CSS -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/responsive.css">
     
+    <!-- Position Adjustments CSS -->
+    <style>
+    /* Hero content positioning */
+    .hero-content {
+        transform: translateY(-120px); /* Move up to avoid interface elements */
+        position: relative;
+        z-index: 5;
+        margin-bottom: 80px;
+    }
+    
+    .glitch-title {
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-content p {
+        margin-bottom: 3rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Scroll down arrow positioning */
+    .scroll-down {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 3rem;
+        color: #ffffff;
+        animation: bounce 2s infinite;
+        z-index: 5;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .hero-content {
+            transform: translateY(-80px);
+        }
+        
+        .scroll-down {
+            bottom: 30px;
+        }
+    }
+    
+    /* YouTube fallback styles */
+    .hidden-youtube-fallback {
+        display: none;
+    }
+    
+    .youtube-fallback-visible .hidden-youtube-fallback {
+        display: block !important;
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        background: rgba(255, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 3px;
+        text-decoration: none;
+        z-index: 5;
+    }
+    </style>
+    
     <!-- Animation Library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     
-    <!-- Lightbox Library -->
+    <!-- Lightbox Library - Updated to more reliable CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"></script>
+    
+    <!-- Emergency YouTube fallback function -->
+    <script>
+    window.openYouTubeVideo = function(videoId) {
+        if (!videoId) return;
+        window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+    };
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -117,6 +190,7 @@
                             <h3 class="portfolio-item-title">TCL TVPlus - The Audition</h3>
                             <p class="portfolio-item-role">Gen AI Art Director</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=8_mUwAL0fW8" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
                 
@@ -129,6 +203,7 @@
                             <h3 class="portfolio-item-title">Dune: Part 2 - Arena Fight</h3>
                             <p class="portfolio-item-role">CG Supervisor</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=HRlRXyGk72I" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
                 
@@ -141,6 +216,7 @@
                             <h3 class="portfolio-item-title">Shazam! Fury - Daughters Scene</h3>
                             <p class="portfolio-item-role">CG Supervisor</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=AdZ-PVC54Gk" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
                 
@@ -153,6 +229,7 @@
                             <h3 class="portfolio-item-title">Shazam! Fury - Fight Scene</h3>
                             <p class="portfolio-item-role">CG Supervisor</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=AJf4E0NTMi8" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
                 
@@ -165,6 +242,7 @@
                             <h3 class="portfolio-item-title">Clash of Clans x Erling Haaland</h3>
                             <p class="portfolio-item-role">CG Supervisor</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=YWQjWdQ6tOA" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
                 
@@ -177,6 +255,7 @@
                             <h3 class="portfolio-item-title">Destiny 2 - Screeb Queen</h3>
                             <p class="portfolio-item-role">CG Supervisor</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=Spl3Xz65eq8" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
                 
@@ -201,6 +280,7 @@
                             <h3 class="portfolio-item-title">Riverdance</h3>
                             <p class="portfolio-item-role">CG Supervisor</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=4YvEAXO8y9c" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
                 
@@ -213,6 +293,7 @@
                             <h3 class="portfolio-item-title">Addams Family</h3>
                             <p class="portfolio-item-role">CG Supervisor</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=4Z5VUf5x2RY" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
                 
@@ -225,6 +306,7 @@
                             <h3 class="portfolio-item-title">Ferrari Land - Racing Legends</h3>
                             <p class="portfolio-item-role">CG Supervisor / Art Director</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=l2mIpzUpJ_E" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
                 
@@ -237,6 +319,7 @@
                             <h3 class="portfolio-item-title">Imaginary Mary</h3>
                             <p class="portfolio-item-role">CG Supervisor</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=VYoB8KX5AnU" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
                 
@@ -249,6 +332,7 @@
                             <h3 class="portfolio-item-title">Wreck-It Ralph</h3>
                             <p class="portfolio-item-role">Procedural Lead / Look Development Artist</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=3posPWuA9Ss" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
                 
@@ -261,6 +345,7 @@
                             <h3 class="portfolio-item-title">Wreck-It Ralph</h3>
                             <p class="portfolio-item-role">Procedural Lead / Look Development Artist</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=pXP2leXbs94" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
                 
@@ -273,6 +358,7 @@
                             <h3 class="portfolio-item-title">Frozen</h3>
                             <p class="portfolio-item-role">Look Development & Lighting Artist</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=1TXc2JbCjmw" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
                 
@@ -285,6 +371,7 @@
                             <h3 class="portfolio-item-title">Lord of the Rings</h3>
                             <p class="portfolio-item-role">Environments TD / Matte Painter</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=w86sDrAtq-0" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
                 
@@ -297,6 +384,7 @@
                             <h3 class="portfolio-item-title">Sky Captain</h3>
                             <p class="portfolio-item-role">Compositor / Matte Painter</p>
                         </div>
+                        <a href="https://www.youtube.com/watch?v=KC3AgTsDqfw" class="hidden-youtube-fallback" target="_blank">Watch on YouTube</a>
                     </div>
                 </div>
             </div>
@@ -577,11 +665,35 @@
 
     <!-- External JavaScript Libraries -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
     
     <!-- Custom JavaScript -->
     <script src="js/main.js"></script>
     <script src="js/portfolio.js"></script>
+    
+    <!-- YouTube Fallback Handling -->
+    <script>
+    // Additional safety net for YouTube videos
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("Setting up YouTube fallback handlers");
+        
+        // Check if lightbox library loaded properly
+        setTimeout(function() {
+            if (typeof GLightbox === 'undefined') {
+                console.warn("GLightbox not found, activating direct YouTube links");
+                document.body.classList.add('youtube-fallback-visible');
+                
+                // Apply direct click handlers to all video items
+                document.querySelectorAll('.portfolio-item[data-video-id]').forEach(item => {
+                    const videoId = item.getAttribute('data-video-id');
+                    item.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+                    });
+                });
+            }
+        }, 1500);
+    });
+    </script>
     
     <!-- FIXED GLITCH EFFECT SCRIPT -->
     <script>
@@ -598,11 +710,10 @@
         fontLoader.style.pointerEvents = 'none';
         document.body.appendChild(fontLoader);
         
-        // Preload all the fonts
+        // Preload all the fonts - REMOVED 'Rubik Mono One' from the list
         const fonts = [
             'Rubik Glitch',
             'Rubik Vinyl', 
-            'Rubik Mono One',
             'Rubik Glitch Pop',
             'Rubik Lines',
             'Rubik Broken Fax',
@@ -615,8 +726,8 @@
         // Create a span for each font to force them to load
         fonts.forEach(font => {
             const span = document.createElement('span');
-            span.style.fontFamily = `'${font}', sans-serif`;
-            span.textContent = 'a';
+            span.style.fontFamily = `'${font}'`; // No fallback specified
+            span.textContent = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
             fontLoader.appendChild(span);
         });
         
@@ -624,7 +735,7 @@
         function startGlitchEffect() {
             if (glitchActive) return; // Already running
             
-            console.log("Starting glitch effect");
+            console.log("Starting glitch effect with no fallback fonts");
             glitchActive = true;
             
             // Get the title element
@@ -641,73 +752,80 @@
             // Define colors
             const colors = ['#00FFFF', '#FFA500', '#FF4D4D', '#FFFFFF'];
             
-            // Set default font in case of problems
-            glitchTitle.style.fontFamily = "'Rubik Glitch', sans-serif";
+            // Set default Rubik font - IMPORTANT: No fallback fonts specified
+            glitchTitle.style.fontFamily = "'Rubik Glitch'";
             
-            // Core recursive glitch function
-            function performGlitch() {
-                try {
-                    // Update timestamp to show the effect is still running
-                    lastGlitchTime = Date.now();
-                    
-                    // Simple glitch - just font family and transform
-                    // Apply a new random font (70% chance)
-                    if (Math.random() < 0.7) {
-                        const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
-                        glitchTitle.style.fontFamily = `'${randomFont}', sans-serif`;
-                    }
-                    
-                    // Apply a slight position offset (50% chance)
-                    if (Math.random() < 0.5) {
-                        const randomX = Math.random() * 4 - 2; // -2 to 2px
-                        const randomY = Math.random() * 2 - 1; // -1 to 1px
-                        glitchTitle.style.transform = `translate(${randomX}px, ${randomY}px)`;
-                    }
-                    
-                    // Change color (30% chance)
-                    if (Math.random() < 0.3) {
-                        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                        glitchTitle.style.color = randomColor;
-                    }
-                    
-                    // Restore text if somehow changed
-                    if (glitchTitle.textContent !== originalText) {
-                        glitchTitle.textContent = originalText;
-                    }
-                } catch (error) {
-                    console.error("Error in glitch effect, trying to recover:", error);
-                    
-                    // Recover to default state if error occurs
-                    try {
-                        glitchTitle.style.fontFamily = "'Rubik Glitch', sans-serif";
-                        glitchTitle.style.color = originalColor;
-                        glitchTitle.style.transform = 'translate(0, 0)';
-                        glitchTitle.textContent = originalText;
-                    } catch (e) {
-                        // Last resort recovery
-                        console.error("Failed to recover from error:", e);
-                    }
-                }
-                
-                // Always try to continue the glitch loop
-                const delay = Math.floor(Math.random() * 450) + 50; // 50-500ms
-                setTimeout(performGlitch, delay);
+            // Create special stylesheet rule to force Rubik fonts only
+            try {
+                const styleSheet = document.createElement('style');
+                styleSheet.textContent = `.glitch-title { font-family: 'Rubik Glitch' !important; }`;
+                document.head.appendChild(styleSheet);
+            } catch (e) {
+                console.error("Could not create font style rule:", e);
             }
             
-            // Start the glitch loop
-            performGlitch();
+            // Wait a bit for fonts to be ready
+            setTimeout(() => {
+                // Core recursive glitch function
+                function performGlitch() {
+                    try {
+                        // Update timestamp to show the effect is still running
+                        lastGlitchTime = Date.now();
+                        
+                        // Apply a new random font (80% chance)
+                        if (Math.random() < 0.8) {
+                            const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+                            // IMPORTANT: The !important flag ensures no fallback fonts appear
+                            glitchTitle.style.cssText += `font-family: '${randomFont}' !important;`;
+                        }
+                        
+                        // Apply a slight position offset (50% chance)
+                        if (Math.random() < 0.5) {
+                            const randomX = Math.random() * 4 - 2; // -2 to 2px
+                            const randomY = Math.random() * 2 - 1; // -1 to 1px
+                            glitchTitle.style.transform = `translate(${randomX}px, ${randomY}px)`;
+                        }
+                        
+                        // Change color (30% chance)
+                        if (Math.random() < 0.3) {
+                            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                            glitchTitle.style.color = randomColor;
+                        }
+                        
+                        // Restore text if somehow changed
+                        if (glitchTitle.textContent !== originalText) {
+                            glitchTitle.textContent = originalText;
+                        }
+                    } catch (error) {
+                        console.error("Error in glitch effect, trying to recover:", error);
+                        
+                        // Recover to Rubik Glitch if error occurs - NO FALLBACKS
+                        try {
+                            glitchTitle.style.cssText += `font-family: 'Rubik Glitch' !important;`;
+                            glitchTitle.style.color = originalColor;
+                            glitchTitle.style.transform = 'translate(0, 0)';
+                            glitchTitle.textContent = originalText;
+                        } catch (e) {
+                            console.error("Failed to recover from error:", e);
+                        }
+                    }
+                    
+                    // Continue the glitch loop
+                    const delay = Math.floor(Math.random() * 350) + 100; // 100-450ms
+                    // Slightly longer minimum delay to prevent font flickering
+                    setTimeout(performGlitch, delay);
+                }
+                
+                // Start the glitch loop
+                performGlitch();
+            }, 1000); // Wait 1 second for fonts to be fully loaded
         }
         
-        // Start the effect when document is ready
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
-            // Document already loaded
-            setTimeout(startGlitchEffect, 500);
-        } else {
-            // Wait for document to load
-            document.addEventListener('DOMContentLoaded', function() {
-                setTimeout(startGlitchEffect, 500);
-            });
-        }
+        // Start the effect when document is fully loaded (not just DOM ready)
+        window.addEventListener('load', function() {
+            // Use window load instead of DOMContentLoaded to ensure fonts are loaded
+            setTimeout(startGlitchEffect, 1000);
+        });
         
         // Additional safety check - if glitch stops, restart it
         setInterval(function() {
