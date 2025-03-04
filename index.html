@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/lightbox-fixes.css">
     
     <!-- Position Adjustments CSS -->
     <style>
@@ -66,10 +65,6 @@
     
     <!-- Animation Library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-    
-    <!-- Lightbox Library - Updated to more reliable CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -614,7 +609,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p>This site was build with Claude.AI and is available on Github<br>© 2025 John Huikku. All rights reserved.</p>
+                <p>This site was built with Claude.AI and is available on Github<br>© 2025 John Huikku. All rights reserved.</p>
                 <div class="footer-links">
                     <a href="https://www.linkedin.com/in/huikku/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     <a href="https://discord.com/users/_alienrobot" target="_blank" rel="noopener noreferrer">Discord</a>
@@ -629,142 +624,7 @@
     <!-- Custom JavaScript -->
     <script src="js/main.js"></script>
     <script src="js/portfolio.js"></script>
-    
-    <!-- YouTube Lightbox Implementation -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log("Initializing GLightbox for portfolio...");
-        
-        // First, ensure all portfolio items with video IDs have proper href attributes
-        document.querySelectorAll('.portfolio-item[data-video-id]').forEach(item => {
-            const videoId = item.getAttribute('data-video-id');
-            // Set href attribute with YouTube URL
-            item.setAttribute('href', `https://www.youtube.com/watch?v=${videoId}`);
-            // Set data-type to video
-            item.setAttribute('data-type', 'video');
-            // Add a class for GLightbox to target
-            item.classList.add('glightbox-video');
-            
-            // Remove any existing click event listeners (important to prevent conflicts)
-            const newItem = item.cloneNode(true);
-            item.parentNode.replaceChild(newItem, item);
-        });
-        
-        // Initialize GLightbox with proper configuration
-        try {
-            const lightbox = GLightbox({
-                selector: '.glightbox-video',
-                touchNavigation: true,
-                loop: false,
-                autoplayVideos: true,
-                preload: true,
-                openEffect: 'zoom',
-                closeEffect: 'fade',
-                videosWidth: '960px',
-                plyr: {
-                    config: {
-                        ratio: '16:9',
-                        youtube: {
-                            noCookie: false,
-                            rel: 0,
-                            showinfo: 0,
-                            iv_load_policy: 3
-                        }
-                    }
-                }
-            });
-            
-            console.log("GLightbox initialized successfully");
-        } catch (error) {
-            console.error("Error initializing GLightbox:", error);
-            
-            // Fallback: Set up a custom lightbox-like experience if GLightbox fails
-            document.querySelectorAll('.portfolio-item[data-video-id]').forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const videoId = this.getAttribute('data-video-id');
-                    
-                    // Create a custom overlay
-                    const overlay = document.createElement('div');
-                    overlay.className = 'custom-video-overlay';
-                    overlay.style.position = 'fixed';
-                    overlay.style.top = '0';
-                    overlay.style.left = '0';
-                    overlay.style.width = '100%';
-                    overlay.style.height = '100%';
-                    overlay.style.backgroundColor = 'rgba(0,0,0,0.9)';
-                    overlay.style.display = 'flex';
-                    overlay.style.justifyContent = 'center';
-                    overlay.style.alignItems = 'center';
-                    overlay.style.zIndex = '9999';
-                    
-                    // Create close button
-                    const closeBtn = document.createElement('button');
-                    closeBtn.innerHTML = '×';
-                    closeBtn.style.position = 'absolute';
-                    closeBtn.style.top = '20px';
-                    closeBtn.style.right = '20px';
-                    closeBtn.style.fontSize = '30px';
-                    closeBtn.style.color = 'white';
-                    closeBtn.style.background = 'none';
-                    closeBtn.style.border = 'none';
-                    closeBtn.style.cursor = 'pointer';
-                    
-                    // Create iframe for YouTube
-                    const iframe = document.createElement('iframe');
-                    iframe.width = '960';
-                    iframe.height = '540';
-                    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-                    iframe.frameBorder = '0';
-                    iframe.allowFullscreen = true;
-                    iframe.style.maxWidth = '90%';
-                    iframe.style.maxHeight = '80vh';
-                    
-                    // Add elements to DOM
-                    overlay.appendChild(closeBtn);
-                    overlay.appendChild(iframe);
-                    document.body.appendChild(overlay);
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling
-                    
-                    // Handle close button click
-                    closeBtn.addEventListener('click', function() {
-                        document.body.removeChild(overlay);
-                        document.body.style.overflow = ''; // Restore scrolling
-                    });
-                    
-                    // Close on overlay click (but not iframe)
-                    overlay.addEventListener('click', function(e) {
-                        if (e.target === overlay) {
-                            document.body.removeChild(overlay);
-                            document.body.style.overflow = '';
-                        }
-                    });
-                    
-                    // Close on escape key
-                    document.addEventListener('keydown', function(e) {
-                        if (e.key === 'Escape') {
-                            if (document.body.contains(overlay)) {
-                                document.body.removeChild(overlay);
-                                document.body.style.overflow = '';
-                            }
-                        }
-                    });
-                });
-            });
-        }
-        
-        // External URLs still need direct handling
-        document.querySelectorAll('.portfolio-item[data-external-url]').forEach(item => {
-            item.addEventListener('click', function(e) {
-                e.preventDefault();
-                const externalUrl = this.getAttribute('data-external-url');
-                if (externalUrl) {
-                    window.open(externalUrl, '_blank');
-                }
-            });
-        });
-    });
-    </script>
+    <script src="js/youtube-lightbox.js"></script>
     
     <!-- FIXED GLITCH EFFECT SCRIPT -->
     <script>
