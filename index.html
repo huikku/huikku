@@ -7,6 +7,8 @@
     <title>John Huikku - CG Supervisor, Art Director, VFX & Animation</title>
     
     <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Rubik+Vinyl&family=Rubik+Mono+One&family=Rubik+Glitch+Pop&family=Rubik+Lines&family=Rubik+Broken+Fax&family=Rubik+Puddles&family=Rubik+Maps&family=Rubik+Iso&family=Rubik+80s+Fade&display=swap" rel="stylesheet">
     
     <!-- External CSS -->
@@ -581,35 +583,25 @@
     <script src="js/main.js"></script>
     <script src="js/portfolio.js"></script>
     
-    <!-- INLINE GLITCH EFFECT - This is the fix for the missing glitch effect -->
+    <!-- FIXED GLITCH EFFECT SCRIPT -->
     <script>
-    /**
-     * Glitch Effect for Hero Title
-     * Creates a dynamic glitching effect for the hero title
-     */
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log("Glitch effect initializing...");
-        initGlitchEffect();
-    });
-
-    /**
-     * Initialize the glitch effect
-     */
-    function initGlitchEffect() {
-        const glitchTitle = document.querySelector('.glitch-title');
+    // Persistent glitch effect with error handling and fallbacks
+    (function() {
+        // Create an interval that constantly checks if the effect is running
+        let glitchActive = false;
+        let lastGlitchTime = 0;
         
-        // Check if glitch title exists
-        if (!glitchTitle) {
-            console.warn('Glitch title element not found!');
-            return;
-        } else {
-            console.log("Glitch title element found, proceeding with effect");
-        }
+        // Load fonts first to ensure they're available
+        const fontLoader = document.createElement('div');
+        fontLoader.style.position = 'absolute';
+        fontLoader.style.visibility = 'hidden';
+        fontLoader.style.pointerEvents = 'none';
+        document.body.appendChild(fontLoader);
         
-        // Define the available fonts for glitching
-        const rubikFonts = [
+        // Preload all the fonts
+        const fonts = [
             'Rubik Glitch',
-            'Rubik Vinyl',
+            'Rubik Vinyl', 
             'Rubik Mono One',
             'Rubik Glitch Pop',
             'Rubik Lines',
@@ -620,130 +612,113 @@
             'Rubik 80s Fade'
         ];
         
-        // Define color palette
-        const colors = ['#00FFFF', '#FFA500', '#FF4D4D', '#FFFFFF'];
+        // Create a span for each font to force them to load
+        fonts.forEach(font => {
+            const span = document.createElement('span');
+            span.style.fontFamily = `'${font}', sans-serif`;
+            span.textContent = 'a';
+            fontLoader.appendChild(span);
+        });
         
-        // Check if reduced motion is preferred
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        
-        if (prefersReducedMotion) {
-            // Simplified effect for users who prefer reduced motion
-            glitchTitle.style.fontFamily = "'Rubik Glitch', sans-serif";
-            glitchTitle.style.color = '#FF4D4D';
-            console.log("Reduced motion version applied");
-        } else {
-            // Start glitch animation
-            console.log("Starting full glitch animation");
-            startGlitchAnimation(glitchTitle, rubikFonts, colors);
-        }
-    }
-
-    /**
-     * Start the glitch animation
-     * @param {HTMLElement} element - The element to apply the effect to
-     * @param {Array} fonts - Array of font families to use
-     * @param {Array} colors - Array of colors to use
-     */
-    function startGlitchAnimation(element, fonts, colors) {
-        // Default state
-        let defaultFont = 'Rubik Glitch';
-        let defaultColor = '#FF4D4D';
-        
-        // Store original text content
-        const originalText = element.textContent;
-        
-        // Set initial styles
-        element.style.fontFamily = `'${defaultFont}', sans-serif`;
-        element.style.color = defaultColor;
-        
-        // Variables to control glitch intensity
-        let glitchIntensity = 0.2; // 0 to 1, where 1 is maximum glitching
-        let lastGlitchTime = 0;
-        
-        /**
-         * Apply a random glitch effect
-         */
-        function randomGlitch() {
-            const now = Date.now();
-            const timeSinceLastGlitch = now - lastGlitchTime;
+        // Main glitch function - with safety features
+        function startGlitchEffect() {
+            if (glitchActive) return; // Already running
             
-            // Random chance to apply glitch based on intensity
-            if (Math.random() < glitchIntensity || timeSinceLastGlitch > 5000) {
-                // Apply various glitch effects
-                
-                // 1. Random font
-                if (Math.random() < 0.7) {
-                    const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
-                    element.style.fontFamily = `'${randomFont}', sans-serif`;
-                }
-                
-                // 2. Random position shift
-                if (Math.random() < 0.5) {
-                    const randomX = Math.random() * 4 - 2; // -2px to +2px
-                    const randomY = Math.random() * 2 - 1; // -1px to +1px
-                    element.style.transform = `translate(${randomX}px, ${randomY}px)`;
-                }
-                
-                // 3. Random color
-                if (Math.random() < 0.3) {
-                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                    element.style.color = randomColor;
-                }
-                
-                // 4. Text distortion (rarely)
-                if (Math.random() < 0.05) {
-                    // Scramble a few letters
-                    const textArray = originalText.split('');
-                    const randomIndex = Math.floor(Math.random() * textArray.length);
-                    textArray[randomIndex] = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-                    element.textContent = textArray.join('');
-                    
-                    // Reset text after a brief moment
-                    setTimeout(() => {
-                        element.textContent = originalText;
-                    }, 50);
-                }
-                
-                // 5. Brightness/contrast flicker
-                if (Math.random() < 0.2) {
-                    const brightness = 100 + Math.random() * 50;
-                    element.style.filter = `brightness(${brightness}%)`;
-                    
-                    // Reset filter after a brief moment
-                    setTimeout(() => {
-                        element.style.filter = 'none';
-                    }, 50);
-                }
-                
-                lastGlitchTime = now;
-                
-                // Periodically increase glitch intensity for a burst effect
-                if (Math.random() < 0.1) {
-                    const prevIntensity = glitchIntensity;
-                    glitchIntensity = 0.8;
-                    
-                    // Reset to normal intensity after a burst
-                    setTimeout(() => {
-                        glitchIntensity = prevIntensity;
-                    }, 1000);
-                }
-            } else {
-                // Occasionally return to default state
-                if (Math.random() < 0.1) {
-                    element.style.fontFamily = `'${defaultFont}', sans-serif`;
-                    element.style.color = defaultColor;
-                    element.style.transform = 'translate(0, 0)';
-                }
+            console.log("Starting glitch effect");
+            glitchActive = true;
+            
+            // Get the title element
+            const glitchTitle = document.querySelector('.glitch-title');
+            if (!glitchTitle) {
+                console.error("Glitch title not found");
+                return;
             }
             
-            // Random delay for next glitch
-            const randomDelay = Math.random() * 450 + 50; // 50ms to 500ms
-            setTimeout(randomGlitch, randomDelay);
+            // Save original text and styles for safety
+            const originalText = glitchTitle.textContent;
+            const originalColor = window.getComputedStyle(glitchTitle).color || '#FF4D4D';
+            
+            // Define colors
+            const colors = ['#00FFFF', '#FFA500', '#FF4D4D', '#FFFFFF'];
+            
+            // Set default font in case of problems
+            glitchTitle.style.fontFamily = "'Rubik Glitch', sans-serif";
+            
+            // Core recursive glitch function
+            function performGlitch() {
+                try {
+                    // Update timestamp to show the effect is still running
+                    lastGlitchTime = Date.now();
+                    
+                    // Simple glitch - just font family and transform
+                    // Apply a new random font (70% chance)
+                    if (Math.random() < 0.7) {
+                        const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+                        glitchTitle.style.fontFamily = `'${randomFont}', sans-serif`;
+                    }
+                    
+                    // Apply a slight position offset (50% chance)
+                    if (Math.random() < 0.5) {
+                        const randomX = Math.random() * 4 - 2; // -2 to 2px
+                        const randomY = Math.random() * 2 - 1; // -1 to 1px
+                        glitchTitle.style.transform = `translate(${randomX}px, ${randomY}px)`;
+                    }
+                    
+                    // Change color (30% chance)
+                    if (Math.random() < 0.3) {
+                        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                        glitchTitle.style.color = randomColor;
+                    }
+                    
+                    // Restore text if somehow changed
+                    if (glitchTitle.textContent !== originalText) {
+                        glitchTitle.textContent = originalText;
+                    }
+                } catch (error) {
+                    console.error("Error in glitch effect, trying to recover:", error);
+                    
+                    // Recover to default state if error occurs
+                    try {
+                        glitchTitle.style.fontFamily = "'Rubik Glitch', sans-serif";
+                        glitchTitle.style.color = originalColor;
+                        glitchTitle.style.transform = 'translate(0, 0)';
+                        glitchTitle.textContent = originalText;
+                    } catch (e) {
+                        // Last resort recovery
+                        console.error("Failed to recover from error:", e);
+                    }
+                }
+                
+                // Always try to continue the glitch loop
+                const delay = Math.floor(Math.random() * 450) + 50; // 50-500ms
+                setTimeout(performGlitch, delay);
+            }
+            
+            // Start the glitch loop
+            performGlitch();
         }
         
-        // Start the glitch animation
-        randomGlitch();
-    }
+        // Start the effect when document is ready
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            // Document already loaded
+            setTimeout(startGlitchEffect, 500);
+        } else {
+            // Wait for document to load
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(startGlitchEffect, 500);
+            });
+        }
+        
+        // Additional safety check - if glitch stops, restart it
+        setInterval(function() {
+            if (glitchActive && Date.now() - lastGlitchTime > 2000) {
+                // More than 2 seconds since last glitch, restart
+                console.log("Glitch effect seems to have stopped, restarting...");
+                glitchActive = false;
+                startGlitchEffect();
+            }
+        }, 3000);
+    })();
     </script>
 </body>
 </html>
