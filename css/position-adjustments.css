@@ -24,16 +24,17 @@
     margin-right: auto;
 }
 
-/* Position the arrow much lower, near the bottom edge */
+/* Position the arrow much lower, near the bottom edge - UPDATED */
 .scroll-down {
     position: absolute;
-    bottom: 20px; /* Positioned firmly at bottom of viewport */
+    bottom: 5px; /* UPDATED: Changed from 10px to 5px for lower position */
     left: 50%;
     transform: translateX(-50%);
     font-size: 3rem;
     color: #ffffff;
     animation: bounce 2s infinite;
     z-index: 5; /* Ensure it's above any video elements */
+    margin-bottom: 0; /* Added to ensure no additional spacing */
 }
 
 /* Ensure hero section maintains proper height */
@@ -66,7 +67,7 @@
     }
     
     .scroll-down {
-        bottom: 30px;
+        bottom: 5px; /* UPDATED: Changed from 30px to 5px for consistency */
     }
 }
 
@@ -76,6 +77,6 @@
     }
     
     .scroll-down {
-        bottom: 20px;
+        bottom: 5px; /* UPDATED: Changed from 20px to 5px for consistency */
     }
 }
