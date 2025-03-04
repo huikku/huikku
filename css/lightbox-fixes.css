@@ -1,0 +1,77 @@
+/* Lightbox Fixes CSS */
+
+/* Ensure GLightbox containers display properly */
+.gslide-media {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* Fix for video containers */
+.gvideo-container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* Make sure YouTube iframes display at correct size */
+.plyr__video-embed iframe {
+    width: 100%;
+    height: 100%;
+}
+
+/* Make portfolio items more clearly clickable */
+.portfolio-item {
+    cursor: pointer;
+}
+
+/* Custom styles for fallback lightbox */
+.custom-video-overlay iframe {
+    box-shadow: 0 0 30px rgba(0,0,0,0.7);
+}
+
+/* Ensure close button is easy to see */
+.gclose, 
+.gnext, 
+.gprev {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.gclose:hover, 
+.gnext:hover, 
+.gprev:hover {
+    opacity: 1;
+}
+
+/* Ensure lightbox content is properly centered */
+.ginner-container {
+    max-width: 90vw;
+    max-height: 85vh;
+}
+
+/* Fix for z-index issues */
+.glightbox-container {
+    z-index: 9999 !important;
+}
+
+/* Ensure lightbox doesn't conflict with other elements */
+.glightbox-open {
+    overflow: hidden;
+}
+
+/* Fix for lightbox background color */
+.glightbox-clean .gslide-description {
+    background: #000;
+}
+
+/* Fix video dimensions on small screens */
+@media (max-width: 768px) {
+    .gvideo-container {
+        max-width: 95vw;
+    }
+    
+    .gslide-media {
+        max-height: 80vh;
+    }
+}

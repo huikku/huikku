@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/lightbox-fixes.css">
     
     <!-- Position Adjustments CSS -->
     <style>
@@ -589,7 +590,7 @@
                 <div class="contact-item"><a href="https://www.linkedin.com/in/huikku/" target="_blank" rel="noopener noreferrer"><img src="images/ui/linkedinLogo.png" alt="LinkedIn" loading="lazy">linkedin.com/in/huikku/</a></div>
                 <div class="contact-item"><a href="https://discord.com/users/_alienrobot" target="_blank" rel="noopener noreferrer"><img src="images/ui/discordLogo.png" alt="Discord" loading="lazy">_alienrobot</a></div>
             </div>
-            <form action="https://formspree.io/f/xyzkrbzy" method="POST" class="contact-form" data-aos="fade-up">
+            <form action="https://formspree.io/f/PUT_YOUR_FORMSPREE_HERE" method="POST" class="contact-form" data-aos="fade-up">
                 <label>
                     Your email:
                     <input type="email" name="email" placeholder="Your email" required>
@@ -613,7 +614,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p>This site was build with Claud.Ai and is avaiablable on Github<br>© 2025 John Huikku. All rights reserved.</p>
+                <p>This site was build with Claude.AI and is available on Github<br>© 2025 John Huikku. All rights reserved.</p>
                 <div class="footer-links">
                     <a href="https://www.linkedin.com/in/huikku/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     <a href="https://discord.com/users/_alienrobot" target="_blank" rel="noopener noreferrer">Discord</a>
@@ -629,18 +630,36 @@
     <script src="js/main.js"></script>
     <script src="js/portfolio.js"></script>
     
-    <!-- FIXED YOUTUBE LIGHTBOX IMPLEMENTATION -->
+    <!-- YouTube Lightbox Implementation -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        console.log("Initializing GLightbox...");
+        console.log("Initializing GLightbox for portfolio...");
         
+        // First, ensure all portfolio items with video IDs have proper href attributes
+        document.querySelectorAll('.portfolio-item[data-video-id]').forEach(item => {
+            const videoId = item.getAttribute('data-video-id');
+            // Set href attribute with YouTube URL
+            item.setAttribute('href', `https://www.youtube.com/watch?v=${videoId}`);
+            // Set data-type to video
+            item.setAttribute('data-type', 'video');
+            // Add a class for GLightbox to target
+            item.classList.add('glightbox-video');
+            
+            // Remove any existing click event listeners (important to prevent conflicts)
+            const newItem = item.cloneNode(true);
+            item.parentNode.replaceChild(newItem, item);
+        });
+        
+        // Initialize GLightbox with proper configuration
         try {
-            // Initialize Lightbox with correct options for videos
             const lightbox = GLightbox({
-                selector: '.portfolio-item[data-video-id]',
+                selector: '.glightbox-video',
                 touchNavigation: true,
                 loop: false,
                 autoplayVideos: true,
+                preload: true,
+                openEffect: 'zoom',
+                closeEffect: 'fade',
                 videosWidth: '960px',
                 plyr: {
                     config: {
@@ -652,41 +671,98 @@
                             iv_load_policy: 3
                         }
                     }
-                },
-                openEffect: 'zoom',
-                closeEffect: 'fade'
+                }
             });
             
             console.log("GLightbox initialized successfully");
-            
-            // Add proper href attributes for GLightbox to work correctly
-            document.querySelectorAll('.portfolio-item[data-video-id]').forEach(item => {
-                const videoId = item.getAttribute('data-video-id');
-                item.setAttribute('href', `https://www.youtube.com/watch?v=${videoId}`);
-                item.setAttribute('data-type', 'video');
-            });
-            
-            // External URLs still need direct handling
-            document.querySelectorAll('.portfolio-item[data-external-url]').forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const externalUrl = this.getAttribute('data-external-url');
-                    if (externalUrl) {
-                        window.open(externalUrl, '_blank');
-                    }
-                });
-            });
         } catch (error) {
-            console.error("Error initializing lightbox:", error);
-            // Setup fallback direct links if GLightbox fails
+            console.error("Error initializing GLightbox:", error);
+            
+            // Fallback: Set up a custom lightbox-like experience if GLightbox fails
             document.querySelectorAll('.portfolio-item[data-video-id]').forEach(item => {
                 item.addEventListener('click', function(e) {
                     e.preventDefault();
                     const videoId = this.getAttribute('data-video-id');
-                    window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+                    
+                    // Create a custom overlay
+                    const overlay = document.createElement('div');
+                    overlay.className = 'custom-video-overlay';
+                    overlay.style.position = 'fixed';
+                    overlay.style.top = '0';
+                    overlay.style.left = '0';
+                    overlay.style.width = '100%';
+                    overlay.style.height = '100%';
+                    overlay.style.backgroundColor = 'rgba(0,0,0,0.9)';
+                    overlay.style.display = 'flex';
+                    overlay.style.justifyContent = 'center';
+                    overlay.style.alignItems = 'center';
+                    overlay.style.zIndex = '9999';
+                    
+                    // Create close button
+                    const closeBtn = document.createElement('button');
+                    closeBtn.innerHTML = '×';
+                    closeBtn.style.position = 'absolute';
+                    closeBtn.style.top = '20px';
+                    closeBtn.style.right = '20px';
+                    closeBtn.style.fontSize = '30px';
+                    closeBtn.style.color = 'white';
+                    closeBtn.style.background = 'none';
+                    closeBtn.style.border = 'none';
+                    closeBtn.style.cursor = 'pointer';
+                    
+                    // Create iframe for YouTube
+                    const iframe = document.createElement('iframe');
+                    iframe.width = '960';
+                    iframe.height = '540';
+                    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                    iframe.frameBorder = '0';
+                    iframe.allowFullscreen = true;
+                    iframe.style.maxWidth = '90%';
+                    iframe.style.maxHeight = '80vh';
+                    
+                    // Add elements to DOM
+                    overlay.appendChild(closeBtn);
+                    overlay.appendChild(iframe);
+                    document.body.appendChild(overlay);
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                    
+                    // Handle close button click
+                    closeBtn.addEventListener('click', function() {
+                        document.body.removeChild(overlay);
+                        document.body.style.overflow = ''; // Restore scrolling
+                    });
+                    
+                    // Close on overlay click (but not iframe)
+                    overlay.addEventListener('click', function(e) {
+                        if (e.target === overlay) {
+                            document.body.removeChild(overlay);
+                            document.body.style.overflow = '';
+                        }
+                    });
+                    
+                    // Close on escape key
+                    document.addEventListener('keydown', function(e) {
+                        if (e.key === 'Escape') {
+                            if (document.body.contains(overlay)) {
+                                document.body.removeChild(overlay);
+                                document.body.style.overflow = '';
+                            }
+                        }
+                    });
                 });
             });
         }
+        
+        // External URLs still need direct handling
+        document.querySelectorAll('.portfolio-item[data-external-url]').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const externalUrl = this.getAttribute('data-external-url');
+                if (externalUrl) {
+                    window.open(externalUrl, '_blank');
+                }
+            });
+        });
     });
     </script>
     
